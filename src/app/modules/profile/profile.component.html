@@ -1,0 +1,289 @@
+<div
+    fxFlex
+    class="page-container"
+    fxLayout.xs="column"
+    fxLayout="row"
+    fxLayoutAlign="start"
+    fxFlexFill
+>
+    <div fxFlex="44" fxFlex.xs="50" class="sec1">
+        <form [formGroup]="userForm" validate>
+            <mat-card class="user-card">
+                <mat-card-header>
+                    <mat-card-title>{{"USER_DETAILS.TITLE"|translate}} </mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <div class="row">
+                        <div class="col">
+                            <mat-form-field class="full-width width106" appearance="outline">
+                                <mat-label> {{"USER_DETAILS.FIRST_NAME"|translate}} </mat-label>
+
+                                <input
+                                    readonly
+                                    id="firstName"
+                                    matInput
+                                    placeholder='{{"USER_DETAILS.FIRST_NAME"|translate}}'
+                                    formControlName="firstName"
+                                />
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <mat-form-field class="full-width" appearance="outline">
+                                <mat-label> {{"USER_DETAILS.LAST_NAME"|translate}} </mat-label>
+                                <input readonly id="lastName" matInput formControlName="lastName" />
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <mat-form-field class="full-width" appearance="outline">
+                                <mat-label> {{"USER_DETAILS.EMAIL"|translate}} </mat-label>
+                                <input
+                                    readonly
+                                    id="email"
+                                    type="email"
+                                    matInput
+                                    formControlName="email"
+                                    autocomplete="off"
+                                />
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <mat-form-field class="full-width" appearance="outline">
+                                <mat-label> {{"COMMON.POSITION"|translate}} </mat-label>
+                                <input
+                                    matInput
+                                    readonly
+                                    type="text"
+                                    id="position"
+                                    formControlName="position"
+                                />
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                    <div class="form-field" fxLayoutAlign="end" appearance="outline"></div>
+                </mat-card-content>
+                <mat-card-actions>                   
+                    <button
+                        id="changePasswordBtn"
+                        mat-raised-button
+                        color="primary"
+                        (click)="togglePasswordChange($event)"
+                    >
+                        {{"COMMON.CHANGE_PASS"|translate}}                        
+                    </button>
+                </mat-card-actions>
+            </mat-card>
+        </form>
+    </div>
+    <!-- <div fxFlex="45" fxFlex.xs="50" class="sec2">
+        <form
+            [formGroup]="passwordForm"
+            (ngSubmit)="onSubmitPassword($event)"
+            *ngIf="passwordChange"
+            autocomplete="off"
+        >
+            <mat-card class="password-card">
+                <mat-card-header>
+                    <mat-card-title> {{"COMMON.CHANGE_PASS"|translate}}</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <mat-form-field class="full-width" appearance="outline">
+                        <mat-label> {{"COMMON.OLD_PASS"|translate}} </mat-label>
+                        <input
+                            id="oldPassword"
+                            matInput
+                            formControlName="oldPassword"
+                            [type]="showOldPass ? 'text' : 'password'"
+                            autocomplete="off"
+                        />
+                        <span class="field-icon" (click)="showOldPass = !showOldPass">
+                            <mat-icon inline="true"
+                                >{{ !showOldPass ? "visibility_off" : "visibility" }}</mat-icon
+                            >
+                        </span>
+                        <mat-error *ngIf="passwordForm.controls.oldPassword.invalid">
+                            <span
+                                id="passwordRequiredErr"
+                                class="error"
+                                *ngIf="passwordForm.controls.oldPassword.errors?.required"
+                                >{{'COMMON.OLD' | translate}}
+                                {{'COMMON.VALIDATORS.REQUIRED_PASSWORD' | translate}}
+                            </span>
+                        </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field class="full-width" appearance="outline" autocomplete="false">
+                        <mat-label> {{"COMMON.NEW_PASS"|translate}}</mat-label>
+                        <input
+                            id="newPassword"
+                            matInput
+                            formControlName="newPassword"
+                            [type]="showNewPass ? 'text' : 'password'"
+                            autocomplete="false"
+                        />
+                        <span class="field-icon" (click)="showNewPass = !showNewPass">
+                            <mat-icon inline="true"
+                                >{{ !showNewPass ? "visibility_off" : "visibility" }}</mat-icon
+                            >
+                        </span>
+                        <mat-error *ngIf="!passwordForm.controls.newPassword.valid">
+                            <span
+                                id="passwordRequiredErr"
+                                class="error"
+                                *ngIf="passwordForm.controls.newPassword.errors?.required"
+                                >{{'COMMON.NEW' | translate}}
+                                {{'COMMON.VALIDATORS.REQUIRED_PASSWORD' | translate}}
+                            </span>
+                            <span
+                                id="passwordMinLengthErr"
+                                class="error"
+                                *ngIf="passwordForm.controls.newPassword.errors?.pattern"
+                                >{{ 'COMMON.VALIDATORS.INVALID_LENGTH' | translate}} 5
+                            </span>
+                        </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field class="full-width" appearance="outline">
+                        <mat-label> {{"COMMON.REPEAT_PASS"|translate}} </mat-label>
+                        <input
+                            id="confirmPassword"
+                            matInput
+                            formControlName="confirmPassword"
+                            [type]="showConfirmPass ? 'text' : 'password'"
+                            autocomplete="off"
+                        />
+                        <span class="field-icon" (click)="showConfirmPass = !showConfirmPass">
+                            <mat-icon inline="true"
+                                >{{ !showConfirmPass ? "visibility_off" : "visibility" }}</mat-icon
+                            >
+                        </span>
+                        <mat-error *ngIf="passwordForm.controls.confirmPassword.invalid">
+                            <span
+                                id="passwordRequiredErr"
+                                class="error"
+                                *ngIf="passwordForm.controls.confirmPassword.errors?.required"
+                                >{{'COMMON.CONFIRM' | translate}}
+                                {{'COMMON.VALIDATORS.REQUIRED_PASSWORD' | translate}}
+                            </span>
+                            <span
+                                id="passwordMatchErr"
+                                class="error"
+                                *ngIf="passwordForm.controls.confirmPassword.errors?.noPasswordMatch"
+                                >{{'COMMON.VALIDATORS.MUST_MATCH_PASS' | translate}}
+                            </span>
+                        </mat-error>
+                    </mat-form-field>
+
+                    <div *ngIf="passwordForm.controls['newPassword']" class="errorHints">
+                        <span class="bold">Strong Password Requirements:</span><br />
+                        <label
+                            class="col"
+                            [ngClass]="
+                                   passwordForm.controls['newPassword']?.hasError('required') ||
+                                   passwordForm.controls['newPassword']?.hasError('minlength')
+                                      ? 'text-danger'
+                                      : 'text-success'
+                                  "
+                        >
+                            <i class="material-icons"
+                                >{{passwordForm.controls["newPassword"]?.hasError("required") ||
+                                passwordForm.controls["newPassword"]?.hasError("minlength") ?
+                                "cancel" : "check_circle" }}</i
+                            >
+                            {{'COMMON.VALIDATORS.INVALID_LENGTH' | translate}} 8
+                        </label>
+                        <label
+                            class="col"
+                            [ngClass]="
+                                   passwordForm.controls['newPassword']?.hasError('required') ||
+                                   passwordForm.controls['newPassword']?.hasError('hasNumber')
+                                      ? 'text-danger'
+                                      : 'text-success'
+                                  "
+                        >
+                            <i class="material-icons"
+                                >{{passwordForm.controls["newPassword"]?.hasError("required") ||
+                                passwordForm.controls["newPassword"]?.hasError("hasNumber") ?
+                                "cancel" : "check_circle" }}</i
+                            >
+                            {{'COMMON.VALIDATORS.MUST_CONTAIN_NUM' | translate}}
+                        </label>
+                        <label
+                            class="col"
+                            [ngClass]="
+                                   passwordForm.controls['newPassword']?.hasError('required') ||
+                                   passwordForm.controls['newPassword']?.hasError('hasCapitalCase')
+                                      ? 'text-danger'
+                                      : 'text-success'
+                                  "
+                        >
+                            <i class="material-icons"
+                                >{{passwordForm.controls["newPassword"]?.hasError("required") ||
+                                passwordForm.controls["newPassword"]?.hasError("hasCapitalCase") ?
+                                "cancel" : "check_circle" }}</i
+                            >
+                            {{'COMMON.VALIDATORS.MUST_CONTAIN_UPPER' | translate}}
+                        </label>
+                        <label
+                            class="col"
+                            [ngClass]="
+                                   passwordForm.controls['newPassword']?.hasError('required') ||
+                                   passwordForm.controls['newPassword']?.hasError('hasLowerCase')
+                                      ? 'text-danger'
+                                      : 'text-success'
+                                  "
+                        >
+                            <i class="material-icons"
+                                >{{passwordForm.controls["newPassword"]?.hasError("required") ||
+                                passwordForm.controls["newPassword"]?.hasError("hasLowerCase") ?
+                                "cancel" : "check_circle" }}</i
+                            >
+                            {{'COMMON.VALIDATORS.MUST_CONTAIN_LOWER' | translate}}
+                        </label>
+                        <label
+                            class="col"
+                            [ngClass]="
+                                   passwordForm.controls['newPassword']?.hasError('required') ||
+                                   passwordForm.controls['newPassword']?.hasError('hasSpecialCharacters')
+                                      ? 'text-danger'
+                                      : 'text-success'
+                                  "
+                        >
+                            <i class="material-icons"
+                                >{{passwordForm.controls["newPassword"]?.hasError("required") ||
+                                passwordForm.controls["newPassword"]?.hasError("hasSpecialCharacters")
+                                ? "cancel" : "check_circle" }}</i
+                            >
+                            {{'COMMON.VALIDATORS.MUST_CONTAIN_SPECIAL' | translate}}
+                        </label>
+                    </div>
+                </mat-card-content>
+
+                <mat-card-actions>
+                    <button fxFlex mat-raised-button color="primary" type="submit">
+                        {{'COMMON.CHANGE' | translate}}
+                    </button>
+                    <button
+                        fxFlex
+                        id="cancelChangePasswordBtn"
+                        class="cancelBtn"
+                        mat-stroked-button
+                        color="primary"
+                        type="button"
+                        (click)="cancelChangePassword($event)"
+                    >
+                        {{'COMMON.CANCEL' | translate}}
+                    </button>
+                </mat-card-actions>
+            </mat-card>
+        </form>
+    </div> -->
+</div>

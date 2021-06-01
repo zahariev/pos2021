@@ -1,0 +1,60 @@
+stages:
+  - build
+  - deploy
+
+variables:
+  REGISTRY: registry.soft2run.com
+  GROUP: hfs
+  SERVICE: hfs-ui
+  SERVICE_PORT_1: front-end
+
+build-project:
+  stage: build
+  tags:
+  - dev-env
+  script:
+    - echo "Building docker image..."
+    - docker build -t ${REGISTRY}/${GROUP}/${SERVICE}/${SERVICE_PORT_1}:$CI_COMMIT_SHORT_SHA .
+    - echo "Publish to registry"
+    - docker push ${REGISTRY}/${GROUP}/${SERVICE}/${SERVICE_PORT_1}:$CI_COMMIT_SHORT_SHA
+    - docker tag ${REGISTRY}/${GROUP}/${SERVICE}/${SERVICE_PORT_1}:$CI_COMMIT_SHORT_SHA ${REGISTRY}/${GROUP}/${SERVICE}/${SERVICE_PORT_1}:latest
+    - echo "Publish to registry - latest"
+    - docker push ${REGISTRY}/${GROUP}/${SERVICE}/${SERVICE_PORT_1}:latest
+  after_script:
+    - echo "Cleaning local registry..."
+    - docker image prune -af
+  only:
+    - development
+    - master
+
+deploy_develop:
+  stage: deploy
+  environment:
+    name: dev-test-env
+  tags:
+    - develop
+  script:
+    - 'docker pull ${REGISTRY}/${GROUP}/${SERVICE}/${SERVICE_PORT_1}:$CI_COMMIT_SHORT_SHA'
+    - 'docker service update --image ${REGISTRY}/${GROUP}/${SERVICE}/${SERVICE_PORT_1}:$CI_COMMIT_SHORT_SHA ${GROUP}_${SERVICE_PORT_1}'
+  after_script:
+    - 'docker image prune -af'
+    - 'docker container prune -f'
+  only:
+    - development
+
+deploy_quality-assurance:
+  stage: deploy
+  environment:
+    name: dev-test-env
+  tags:
+    - quality-assurance
+  script:
+    - 'docker pull ${REGISTRY}/${GROUP}/${SERVICE}/${SERVICE_PORT_1}:$CI_COMMIT_SHORT_SHA'
+    - 'docker service update --image ${REGISTRY}/${GROUP}/${SERVICE}/${SERVICE_PORT_1}:$CI_COMMIT_SHORT_SHA ${GROUP}_${SERVICE_PORT_1}'
+  after_script:
+    - 'docker image prune -af'
+    - 'docker container prune -f'
+  only:
+    - tags
+  when: manual
+

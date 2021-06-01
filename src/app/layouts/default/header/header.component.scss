@@ -1,0 +1,116 @@
+@import '/src/assets/styles/styles-variables.scss';
+
+ul li {
+    list-style: none;
+}
+
+ul {
+    display: flex;
+}
+
+.mat-toolbar {
+    min-height: 60px;
+    img {
+        margin: 0 16px;
+    }
+}
+.mat-toolbar-row {
+    height: 60px;
+}
+
+.logo {
+    display: inline-flex;
+    align-items: center;
+    width: 200px;
+
+    img {
+        cursor: pointer;
+        height: 50px;
+    }
+}
+
+#userMenu {
+    margin-top: 2px;
+}
+
+.mat-menu-item {
+    font-family: 'Roboto';
+}
+
+input {
+    outline: none;
+}
+input[type='search'] {
+    font: Arial, Helvetica, sans-serif;
+    -webkit-appearance: textfield;
+    box-sizing: content-box;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 0.7em;
+    margin-top: 8px;
+    height: 8px;
+}
+input::-webkit-search-decoration,
+input::-webkit-search-cancel-button {
+    display: none;
+}
+
+input[type='search'] {
+    border: solid 1px mat-color($mat-grey, 50);
+    padding: 9px 10px 9px 32px;
+    width: 55px;
+
+    -webkit-border-radius: 10em;
+    -moz-border-radius: 10em;
+    border-radius: 10em;
+    color: mat-color($hover-bg, 800);
+
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    transition: all 0.5s;
+}
+.search-icon {
+    position: relative;
+    top: 7px;
+    left: 31px;
+    color: mat-color($hover-bg, 800);
+
+    -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    transform: rotate(90deg);
+}
+
+#username {
+    text-align: end;
+    span {
+        font-size: 0.7em;
+        vertical-align: sub;
+        padding-right: 14px;
+    }
+}
+
+#clear-icon-button {
+    position: relative;
+    top: 0px;
+    zoom: 80%;
+    right: 40px;
+    color: mat-color($hover-bg, 600);
+}
+
+input[type='search']:focus {
+    width: 130px;
+    background-color: mat-color($mat-grey, 50);
+    border-color: mat-color($webapp-primary, 900);
+
+    -webkit-box-shadow: 0 0 5px mat-color($hover-bg, 600);
+    -moz-box-shadow: 0 0 5px mat-color($hover-bg, 600);
+    box-shadow: 0 0 5px mat-color($hover-bg, 600);
+    i {
+        display: none;
+    }
+}
+
+.right {
+    margin-left: auto;
+}

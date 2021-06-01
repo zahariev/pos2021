@@ -1,0 +1,69 @@
+<div #focus class="example-container" [class.mat-elevation-z2]="true">
+    <div class="logo">
+        <img src="./assets/Helvetic Logo.jpg" class="img-responsive" alt="Logo" />
+    </div>
+
+    <div class="form-container">
+        <form [formGroup]="loginForm" autocomplete="off" (submit)="onSubmit()">
+            <mat-form-field class="form-field" appearance="outline">
+                <mat-label> {{'COMMON.EMAIL' | translate}} </mat-label>
+                <input
+                    id="email"
+                    type="email"
+                    matInput
+                    formControlName="username"
+                    required
+                    autocomplete="off"
+                />
+                <mat-error *ngIf=" loginForm.controls.username.invalid">
+                    <span
+                        id="emailRequiredErr"
+                        class="error"
+                        *ngIf="loginForm.controls.username.errors?.required"
+                        >{{'COMMON.VALIDATORS.REQUIRED_EMAIL' | translate}}</span
+                    >
+                    <span
+                        id="emailValidErr"
+                        class="error"
+                        *ngIf="loginForm.controls.username.errors?.pattern"
+                        >{{ 'COMMON.VALIDATORS.INVALID_EMAIL' | translate}}</span
+                    >
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field class="form-field" appearance="outline">
+                <mat-label> {{'COMMON.PASSWORD' | translate}} </mat-label>
+                <input
+                    id="password"
+                    matInput
+                    formControlName="password"
+                    type="password"
+                    autocomplete="off"
+                />
+                <mat-error *ngIf="loginForm.controls.password.invalid">
+                    <span
+                        id="passwordRequiredErr"
+                        class="error"
+                        *ngIf="loginForm.controls.password.errors?.required"
+                        >{{'COMMON.VALIDATORS.REQUIRED_PASSWORD' | translate}}
+                    </span>
+                </mat-error>
+            </mat-form-field>
+
+            <button
+                color="primary"
+                mat-raised-button
+                full-width
+                type="submit"
+                class="button form-field"
+            >
+                {{'COMMON.LOGIN' | translate}}
+            </button>
+            <a color="primary 500" [routerLink]="['/login/reset']"
+                >{{'COMMON.FORGOTTEN_PASS' | translate}}</a
+            >
+            <div class="serverError">
+                <span>{{ formError | translate}}</span>
+            </div>
+        </form>
+    </div>
+</div>

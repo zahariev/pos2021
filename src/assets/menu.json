@@ -1,0 +1,52 @@
+[
+    {
+        "label": "Dashobard",
+        "path": "dashboard",
+        "id": 4,
+        "type": "admin-type",
+        "children": []
+    },
+
+    {
+        "path": "admin",
+        "label": "Admin",
+        "id": 1,
+        "type": "admin-type",
+        "children": [
+            {
+                "label": "Users",
+                "path": "admin/users",
+                "id": 26,
+                "type": "admin-type",
+                "children": [
+                    {
+                        "label": "Manage Details",
+                        "path": "admin/users/edit",
+                        "id": 34,
+                        "type": "admin-type"
+                    }
+                ]
+            },
+            {
+                "label": "Logs",
+                "path": "admin/logs",
+                "id": 27,
+                "type": "admin-type",
+                "children": [
+                    {
+                        "label": "Edit",
+                        "path": "admin/logs/edit",
+                        "id": 56,
+                        "type": "admin-type"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "label": "System Settings",
+        "children": [],
+        "path": "system-settings",
+        "id": 28
+    }
+]

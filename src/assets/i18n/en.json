@@ -1,0 +1,89 @@
+{
+    "COMMON": {
+        "ADD": "+",
+        "EDIT": "Edit",
+        "NAME": "Name",
+        "GREETINGS": "Hello, ",
+        "POSITION": "Position",
+        "USER_PHONE": "Phone no.",
+        "WELCOME": "Welcome",
+        "NOT_FOUND": "We Couldn't Find The Page You Are Looking For!",
+        "EMAIL": "Email",
+        "PASSWORD": "Password",
+        "PASSWORD_FORMAT": "Password pattern [ a-Z, 0-9, special char ]",
+        "USER_RIGHTS": "User Roles",
+        "IS_ACTIVE": "Enable account",
+        "OLD_PASS": "Current password",
+        "NEW_PASS": "New password",
+        "REPEAT_PASS": "Confirm password",
+        "CHANGE_PASS": "Request Password Change",
+        "FORGOTTEN_PASS": "Forgotten password",
+        "FORGOTTEN_PASS_EXPLAIN": "Please, enter your email address. We will provide a link on which you can reset your password.",
+        "REQUEST_PASS_BUTTON": "Send",
+        "RESET_PASS": "Reset Password",
+        "LOGIN": "Log In",
+        "LOGOUT": "Logout",
+        "USER_EDIT_SUCCESS": "User profile was succesfully changed",
+        "USER_ADD_SUCCESS": "User was succesfully created",
+        "VALIDATORS": {
+            "DUPLICATE": "Name already exists!",
+            "PATTERN": "Does not match pattern:",
+            "REQUIRED": "This field is mandatory.",
+            "INVALID_FORMAT": "This field format is invalid.",
+            "INVALID_PASS_FORMAT": "Password format is invalid.",
+            "MUST_MATCH_PASS": "Passwords don't match.",
+            "INVALID_EMAIL": "Please enter a valid email.",
+            "REQUIRED_EMAIL": "This field is mandatory.",
+            "REQUIRED_PASSWORD": "Password is required",
+            "LETTERS_ONLY": "Letters only are allowed.",
+            "MIN_LENGTH": "minimum length is ",
+            "MAX_LENGTH": "maximum length is ",
+            "MUST_CONTAIN_NUM": "Must contain anumber",
+            "MUST_CONTAIN_UPPER": "Must contain Capital case character",
+            "MUST_CONTAIN_LOWER": "Must contain Lower case character",
+            "MUST_CONTAIN_SPECIAL": "Must contain Special character"
+        },
+        "SVR_ERR": {
+            "INVALID_TOKEN": "Reset password token is invalid or expired!",
+            "GENERAL_ERROR": "Something went wrong! Please try again later.",
+            "GENERAL_UNAUTHORIZED": "Something went wrong! Please try again later.",
+            "CREDENTIALS_ERROR": "Invalid email or password!"
+        },
+        "CONFIRM_TITLE": "Are you sure?",
+        "SEARCH": "Search",
+        "CANCEL": "Cancel",
+        "CHANGE": "Change",
+        "NEXT": "Next",
+        "NEW": "New",
+        "OLD": "Old",
+        "CONFIRM": "Confirm",
+        "CONFIRM_SAVE": "Save Changes",
+        "BACK": "Back",
+        "en": "English",
+        "TM": " All Rights Reserved 2021"
+    },
+    "ERROR_MESSAGE": {
+        "INVALID_EMAIL": "Please enter a valid email."
+    },
+    "MENU": {
+        "DASHBOARD": "Dashboard"
+    },
+
+    "RESET_PASS": {
+        "REMEMBER": "Password remembered?",
+        "WORKFLOW": "Here comes text explaining Reset Password workflow. Email recieving and confirming reset password."
+    },
+
+    "USER_DETAILS": {
+        "MENU_LINK": "My Profile",
+        "TAB_DETAILS": "Details",
+        "TAB_PERMISSIONS": "Permissions",
+        "SELECT_PREDEFINED": "Predefined Permissions",
+        "CUSTOM": "Custom",
+        "TITLE": "User Information",
+        "ADD_TITLE": "Add New User Details",
+        "FIRST_NAME": "First name",
+        "LAST_NAME": "Last name",
+        "EMAIL": "Email"
+    }
+}

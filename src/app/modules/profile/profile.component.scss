@@ -1,0 +1,126 @@
+@import '/src/assets/styles/styles-variables.scss';
+
+.page-container {
+    display: flex;
+}
+
+.full-width {
+    width: 100%;
+}
+
+mat-card {
+    min-height: 475px;
+}
+
+mat-label {
+    opacity: 0.8;
+}
+
+.mat-card-actions {
+    padding: 0px;
+}
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+
+.col {
+    flex: 1;
+    margin-right: 20px;
+}
+
+.col:last-child {
+    margin-right: 0;
+}
+
+mat-card.password-card {
+    min-width: 300px;
+    margin-left: 10%;
+}
+
+.user-card {
+    min-width: 300px;
+}
+
+.cancelBtn {
+    background-color: white;
+    color: mat-color($webapp-primary);
+}
+
+.field-icon {
+    float: right;
+    font-size: 1.4em;
+    margin-top: -22px;
+    position: relative;
+    z-index: 2;
+}
+
+.errorHints {
+    display: grid;
+    font-family: Rand-Regular;
+    padding-bottom: 17px;
+    // font-size: 0.9em;
+    line-height: 1.5em;
+    .bold {
+        font-family: Rand-Medium;
+        opacity: 0.7;
+    }
+}
+
+.material-icons {
+    display: inline-flex;
+    vertical-align: middle;
+    font-size: 1.1em;
+
+    cursor: pointer;
+}
+
+mat-icon.arrow {
+    margin-top: 3px;
+}
+
+mat-icon {
+    opacity: 0.7;
+    margin-top: -13px;
+}
+
+.text-danger {
+    font-size: 0.9em;
+    margin: 0px;
+
+    // Have to choose, which one of the colors ?
+    color: mat-color($webapp-warn);
+    color: mat-color($webapp-primary, A700);
+}
+
+.text-success {
+    font-size: 0.9em;
+    margin: 0px;
+    color: #28a745;
+}
+
+input {
+    height: 20px;
+}
+
+input[type='password'] {
+    opacity: 0.7;
+    font-family: 'fontello';
+    font-style: normal;
+    font-weight: normal;
+    /* speak: none; */
+
+    /* For safety - reset parent styles, that can break glyph codes*/
+    font-variant: normal;
+    text-transform: none;
+
+    /* Font smoothing. That was taken from TWBS */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    /* Uncomment for 3D effect */
+    /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
+
+    /* add spacing to better separate each image */
+    letter-spacing: 2px;
+}

@@ -1,0 +1,69 @@
+<mat-toolbar color="primary">
+    <mat-toolbar-row>
+        <div class="logo">
+            <img alt="Logo" src="./assets/Logo.jpg" width="70%" [routerLink]="['/dashboard']" />
+            <button
+                mat-button
+                mat-icon-button
+                class="mat-elevation-z0"
+                (click)="toggleSidebar()"
+                id="sidebar-toggle"
+            >
+                <mat-icon>menu</mat-icon>
+            </button>
+        </div>
+
+        <div fxFlex fxLayout="row" fxLayoutAlign="flex-end" class="right">
+            <ul fxLayout="row">
+                <li>
+                    <mat-icon class="material-icons search-icon">search</mat-icon>
+                    <input
+                        type="search"
+                        placeholder='{{"COMMON.SEARCH"|translate}}'
+                        #searchInput
+                        (keyup)="search($event)"
+                    />
+                </li>
+                <li id="clear-icon-button">
+                    <button
+                        [disabled]="!searchInput.value.length"
+                        mat-button
+                        mat-icon-button
+                        class="clear-icon-button"
+                        aria-label="Clear"
+                        (click)="searchInput.value=''"
+                    >
+                        <mat-icon *ngIf="searchInput.value.length">close</mat-icon>
+                    </button>
+                </li>
+                <li id="username">
+                    <span> {{user?.firstName}}</span>
+                </li>
+
+                <li>
+                    <button
+                        id="userMenu"
+                        mat-icon-button
+                        [matMenuTriggerFor]="menu"
+                        (click)="menuClick()"
+                    >
+                        <mat-icon>person_outline</mat-icon>
+                    </button>
+
+                    <mat-menu #menu="matMenu">
+                        <button mat-menu-item [routerLink]="['user-profile']">
+                            <mat-icon>settings</mat-icon>
+                            {{"USER_DETAILS.MENU_LINK"|translate}}
+                        </button>
+                        <mat-divider></mat-divider>
+
+                        <button mat-menu-item [routerLink]="['../login']">
+                            <mat-icon>exit_to_app</mat-icon>
+                            {{"COMMON.LOGOUT"|translate}}
+                        </button>
+                    </mat-menu>
+                </li>
+            </ul>
+        </div>
+    </mat-toolbar-row>
+</mat-toolbar>
