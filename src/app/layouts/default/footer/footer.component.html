@@ -1,5 +1,12 @@
-<mat-divider></mat-divider>
-<footer fxFlexlayout>
-    <span fxFlex="20" id="tradeMark"> &copy; {{'COMMON.TM' | translate}} </span>
-    <span fxFlex fxLayout="row" fxLayoutAlign="flex-end" class="version">v.{{version}}</span>
-</footer>
+<div class="tabContainer" [@tabState]="state">
+    <mat-divider></mat-divider>
+    <footer fxFlexlayout class="tabContent">
+        <!-- <span fxFlex="20" id="tradeMark"> -->
+        <button mat-button class="tab" (click)="toggleOpenTables()">
+            <mat-icon>keyboard_arrow_up</mat-icon> opened bills {{3}}
+        </button>
+        <!-- </span> -->
+        <!-- <span fxFlex="20" id="tradeMark"> &copy; {{'COMMON.TM' | translate}} </span> -->
+        <!-- <span fxFlex fxLayout="row" fxLayoutAlign="flex-end" class="version">v.{{version}}</span> -->
+    </footer>
+</div>

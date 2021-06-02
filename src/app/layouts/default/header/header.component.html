@@ -38,17 +38,16 @@
                 </li>
                 <li class="tab"></li>
                 <li class="tab"></li>
-                <li id="username">
-                    <span> {{user?.firstName}}</span>
-                </li>
+                <li class="tab"></li>
 
                 <li>
                     <button
                         id="userMenu"
-                        mat-icon-button
+                        mat-button
                         [matMenuTriggerFor]="menu"
                         (click)="menuClick()"
                     >
+                        <span id="username"> {{user?.firstName}}</span>
                         <mat-icon>person_outline</mat-icon>
                     </button>
 

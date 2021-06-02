@@ -4,6 +4,8 @@ import { CommonModule } from '@angular/common';
 import { DefaultComponent } from './default.component';
 import { RouterModule } from '@angular/router';
 import { HeaderComponent } from './header/header.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 import { FooterComponent } from './footer/footer.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { SharedModule } from 'src/app/shared/shared.module';
@@ -27,7 +29,14 @@ import { DashboardComponent } from '../../modules/dashboard/dashboard.component'
         OpenbillDetailsComponent,
         DashboardComponent,
     ],
-    imports: [CommonModule, MaterialModule, RouterModule, SharedModule, HttpClientModule],
+    imports: [
+        CommonModule,
+        MaterialModule,
+        BrowserAnimationsModule,
+        RouterModule,
+        SharedModule,
+        HttpClientModule,
+    ],
     providers: [],
 })
 export class DefaultModule {}

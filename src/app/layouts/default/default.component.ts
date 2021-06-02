@@ -1,7 +1,9 @@
+/* eslint-disable @typescript-eslint/no-unused-expressions */
 import { UserService } from '@app/shared/services/auth/user.service';
 import { Component, OnInit } from '@angular/core';
 import { User } from '@app/shared/models/user';
 import { Router } from '@angular/router';
+import { animate, state, style, transition, trigger } from '@angular/animations';
 const map: { [key: string]: string } = {};
 
 // eslint-disable-next-line prefer-arrow/prefer-arrow-functions
@@ -16,6 +18,7 @@ const getProperty = function <T, K extends keyof T>(o: T, propertyName: K): T[K]
 export class DefaultComponent {
     leftBarOpen = false;
     rightBarOpen = true;
+    state = 'default';
     user!: User | null;
     constructor(public userService: UserService, private router: Router) {
         this.userService.user$.subscribe((user) => {

@@ -1,17 +1,20 @@
 :host {
-    width: 100%;
+    width: 80vw;
 }
 
 .sidenav-container {
     height: 100%;
     width: 100%;
+    // width: 70vw !important;
+
     position: absolute;
     top: 0;
 }
 
 #itemTabs {
     padding-left: 20px;
-    width: 70vw;
+    width: 70vw !important;
+    height: 92vh;
 }
 
 .Item {

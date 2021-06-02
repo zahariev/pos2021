@@ -10,6 +10,7 @@
         (contextmenu)="subClick($event); (false)"
         mat-swipe-content="1"
         *ngIf="order" -->
+
     <mat-tab-group id="itemTabs" hidden="order.user.id" [selectedIndex]="0">
         <!-- <mat-tab>
             <ng-template mat-tab-label>
@@ -44,6 +45,8 @@
             </div>
         </mat-tab>
     </mat-tab-group>
-
-    <!-- Order -->
+    <!-- <div class="tabContainer" [@tabState]="state">
+        <div class="tab" (click)="toggleOpenTables()" color="primary">opened</div>
+        <div class="tabContent">text</div>
+    </div> -->
 </mat-sidenav-container>

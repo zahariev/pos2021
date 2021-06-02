@@ -42,6 +42,10 @@ ul {
 input {
     outline: none;
 }
+
+li {
+    z-index: 99;
+}
 input[type='search'] {
     font: Arial, Helvetica, sans-serif;
     -webkit-appearance: textfield;
@@ -84,12 +88,7 @@ input[type='search'] {
 }
 
 #username {
-    text-align: end;
-    span {
-        font-size: 0.7em;
-        vertical-align: sub;
-        padding-right: 14px;
-    }
+    padding-right: 10px;
 }
 
 #clear-icon-button {
@@ -118,5 +117,5 @@ input[type='search']:focus {
 }
 
 li.tab {
-    min-width: 10vw;
+    min-width: 5vw;
 }
