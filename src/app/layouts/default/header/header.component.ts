@@ -17,7 +17,8 @@ import { UserService } from '@app/shared/services/user.service';
     styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-    @Output() toggleSidebarForMe: EventEmitter<boolean> = new EventEmitter();
+    @Output() toggleLeftBarForMe: EventEmitter<string> = new EventEmitter();
+    @Output() toggleRightBarForMe: EventEmitter<string> = new EventEmitter();
     @ViewChild('searchInput') searchInput!: ElementRef;
 
     value = '';
@@ -32,8 +33,17 @@ export class HeaderComponent implements OnInit {
 
     menuClick() {}
 
-    toggleSidebar() {
-        this.toggleSidebarForMe.emit();
+    toggleLeftSidebar() {
+        this.toggleLeftBarForMe.emit();
+
+        // Event triggering to resize components in Content container
+        setTimeout(() => {
+            window.dispatchEvent(new Event('resize'));
+        }, 300);
+    }
+
+    toggleRightSidebar() {
+        this.toggleRightBarForMe.emit();
 
         // Event triggering to resize components in Content container
         setTimeout(() => {

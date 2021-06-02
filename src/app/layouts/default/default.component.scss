@@ -3,7 +3,11 @@
     flex-direction: column;
     height: 100%;
 }
-mat-drawer {
+#rightDrawer {
+    width: 28%;
+}
+
+#leftDrawer {
     width: 200px;
 }
 

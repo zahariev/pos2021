@@ -1,16 +1,16 @@
 <mat-toolbar color="primary">
     <mat-toolbar-row>
         <div class="logo">
-            <img alt="Logo" src="./assets/Logo.jpg" width="70%" [routerLink]="['/dashboard']" />
             <button
                 mat-button
                 mat-icon-button
                 class="mat-elevation-z0"
-                (click)="toggleSidebar()"
+                (click)="toggleLeftSidebar()"
                 id="sidebar-toggle"
             >
                 <mat-icon>menu</mat-icon>
             </button>
+            <img alt="Logo" src="./assets/Logo.jpg" width="70%" [routerLink]="['/dashboard']" />
         </div>
 
         <div fxFlex fxLayout="row" fxLayoutAlign="flex-end" class="right">
@@ -48,6 +48,16 @@
                         (click)="menuClick()"
                     >
                         <mat-icon>person_outline</mat-icon>
+                    </button>
+
+                    <button
+                        mat-button
+                        mat-icon-button
+                        class="mat-elevation-z0"
+                        (click)="toggleRightSidebar()"
+                        id="sidebar-toggle"
+                    >
+                        <mat-icon>menu</mat-icon>
                     </button>
 
                     <mat-menu #menu="matMenu">

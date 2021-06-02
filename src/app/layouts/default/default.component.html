@@ -1,8 +1,15 @@
-<app-header (toggleSidebarForMe)="sideBarToggler()"></app-header>
+<app-header
+    (toggleLeftBarForMe)="leftBarToggler()"
+    (toggleRightBarForMe)="rightBarToggler()"
+></app-header>
 <mat-drawer-container>
-    <mat-drawer mode="side" [opened]="sidebarOpen">
+    <mat-drawer id="leftDrawer" mode="side" [opened]="leftBarOpen" position="start">
         <app-sidebar *ngIf="user?.id"></app-sidebar>
     </mat-drawer>
+    <mat-drawer id="rightDrawer" mode="side" [opened]="rightBarOpen" position="end">
+        <app-sidebar *ngIf="user?.id"></app-sidebar>
+    </mat-drawer>
+
     <mat-drawer-content>
         <router-outlet></router-outlet>
     </mat-drawer-content>
