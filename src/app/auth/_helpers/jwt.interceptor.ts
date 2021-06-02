@@ -51,7 +51,6 @@ export class JwtInterceptor implements HttpInterceptor {
         //     request = this.addToken(request, token);
         //     if (!request.url.endsWith('/token/refresh')) this.spinnerShow();
         // }
-        console.log(request);
 
         return next.handle(request).pipe(
             tap((event) => {

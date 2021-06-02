@@ -10,7 +10,7 @@
             >
                 <mat-icon>menu</mat-icon>
             </button>
-            <img alt="Logo" src="./assets/Logo.jpg" width="70%" [routerLink]="['/dashboard']" />
+            <!-- <img alt="Logo" src="./assets/Logo.jpg" width="70%" [routerLink]="['/dashboard']" /> -->
         </div>
 
         <div fxFlex fxLayout="row" fxLayoutAlign="flex-end" class="right">
@@ -50,7 +50,7 @@
                         <mat-icon>person_outline</mat-icon>
                     </button>
 
-                    <button
+                    <!-- <button
                         mat-button
                         mat-icon-button
                         class="mat-elevation-z0"
@@ -58,7 +58,7 @@
                         id="sidebar-toggle"
                     >
                         <mat-icon>menu</mat-icon>
-                    </button>
+                    </button> -->
 
                     <mat-menu #menu="matMenu">
                         <button mat-menu-item [routerLink]="['user-profile']">
@@ -73,6 +73,8 @@
                         </button>
                     </mat-menu>
                 </li>
+
+                <li class="tab"></li>
             </ul>
         </div>
     </mat-toolbar-row>
