@@ -9,7 +9,7 @@ import {
     ViewChild,
 } from '@angular/core';
 import { User } from '@shared/models/user';
-import { UserService } from '@app/shared/services/user.service';
+import { UserService } from '@app/shared/services/auth/user.service';
 
 @Component({
     selector: 'app-header',

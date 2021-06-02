@@ -1,6 +1,6 @@
 /* eslint-disable @angular-eslint/directive-selector */
 import { Directive, Input, TemplateRef, ViewContainerRef } from '@angular/core';
-import { UserService } from './services/user.service';
+import { UserService } from './services/auth/user.service';
 
 @Directive({
     selector: '[hasClaim]',

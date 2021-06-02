@@ -9,11 +9,11 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import jwt_decode from 'jwt-decode';
 import { UserPermissions } from '@app/auth/models/UserPermissions';
 import { catchError, map, tap } from 'rxjs/operators';
-import { PersistanceService } from '@shared/services/persistance.service';
+import { PersistanceService } from '@app/shared/services/auth/persistance.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { BehaviorSubject, Observable, of } from 'rxjs';
-import { UserService } from '@app/shared/services/user.service';
-import { JwtTokenService } from '@app/shared/services/jwt-token.service';
+import { UserService } from '@app/shared/services/auth/user.service';
+import { JwtTokenService } from '@app/shared/services/auth/jwt-token.service';
 const headers = new HttpHeaders().set('Content-Type', 'application/json');
 
 @Injectable({

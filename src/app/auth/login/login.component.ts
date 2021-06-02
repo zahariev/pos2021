@@ -3,7 +3,7 @@ import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angula
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '@app/core/auth/auth.service';
-import { HistoryService } from '@app/shared/services/history.service';
+import { HistoryService } from '@app/shared/services/auth/history.service';
 
 @Component({
     selector: 'app-login',

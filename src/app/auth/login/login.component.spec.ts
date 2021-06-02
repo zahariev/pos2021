@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/naming-convention */
-import { HistoryService } from './../../shared/services/history.service';
+import { HistoryService } from '../../shared/services/auth/history.service';
 import { DebugElement, Pipe, PipeTransform } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { AbstractControl, ReactiveFormsModule } from '@angular/forms';

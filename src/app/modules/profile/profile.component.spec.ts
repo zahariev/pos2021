@@ -11,7 +11,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Router, RouterModule } from '@angular/router';
-import { HistoryService } from '@app/shared/services/history.service';
+import { HistoryService } from '@app/shared/services/auth/history.service';
 
 import { ProfileComponent } from './profile.component';
 

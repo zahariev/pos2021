@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/prefer-for-of */
-import { UserService } from '@app/shared/services/user.service';
+import { UserService } from '@app/shared/services/auth/user.service';
 /* eslint-disable @typescript-eslint/naming-convention */
 import { NestedTreeControl } from '@angular/cdk/tree';
 import { Location } from '@angular/common';

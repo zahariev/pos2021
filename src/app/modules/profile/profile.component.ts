@@ -4,9 +4,9 @@ import { ErrorStateMatcher } from '@angular/material/core';
 import { Router } from '@angular/router';
 import { User } from '@shared/models/user';
 import { AuthService } from '@app/core/auth/auth.service';
-import { HistoryService } from '@app/shared/services/history.service';
+import { HistoryService } from '@app/shared/services/auth/history.service';
 import { CustomValidators } from '@shared/custom-validators';
-import { UserService } from '@app/shared/services/user.service';
+import { UserService } from '@app/shared/services/auth/user.service';
 
 @Component({
     selector: 'app-profile',

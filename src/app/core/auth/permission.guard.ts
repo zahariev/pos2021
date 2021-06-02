@@ -6,8 +6,8 @@ import {
     UrlTree,
     Router,
 } from '@angular/router';
-import { HistoryService } from '@app/shared/services/history.service';
-import { UserService } from '@app/shared/services/user.service';
+import { HistoryService } from '@app/shared/services/auth/history.service';
+import { UserService } from '@app/shared/services/auth/user.service';
 import { Observable } from 'rxjs';
 import { AuthService } from './auth.service';
 

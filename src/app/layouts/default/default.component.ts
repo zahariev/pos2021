@@ -1,4 +1,4 @@
-import { UserService } from '@app/shared/services/user.service';
+import { UserService } from '@app/shared/services/auth/user.service';
 import { Component, OnInit } from '@angular/core';
 import { User } from '@app/shared/models/user';
 import { Router } from '@angular/router';

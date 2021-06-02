@@ -15,7 +15,7 @@ import { AuthService } from '@app/core/auth/auth.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { BehaviorSubject } from 'rxjs';
-import { JwtTokenService } from '@app/shared/services/jwt-token.service';
+import { JwtTokenService } from '@app/shared/services/auth/jwt-token.service';
 @Injectable()
 export class JwtInterceptor implements HttpInterceptor {
     timer: any;
