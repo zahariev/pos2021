@@ -1,4 +1,3 @@
-import { filter } from 'rxjs/operators';
 /* eslint-disable @typescript-eslint/prefer-for-of */
 /* eslint-disable @typescript-eslint/naming-convention */
 import { User } from '@shared/models/user';
@@ -8,8 +7,7 @@ import { Observable } from 'rxjs/internal/Observable';
 import { BehaviorSubject, throwError } from 'rxjs';
 import { PersistanceService } from './persistance.service';
 import { JwtTokenService } from './jwt-token.service';
-import { Permission } from '@shared/models/permission';
-import { catchError, tap } from 'rxjs/operators';
+import { tap } from 'rxjs/operators';
 
 const path = '/user-management';
 

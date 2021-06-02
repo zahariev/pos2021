@@ -30,16 +30,32 @@ export class ItemboardComponent implements OnInit {
     menu: any = [];
     tabs: any = [];
     state = 'default';
+    selectedIdx = 0;
+    filteredItems: any[] = [];
 
     constructor(private menuService: MenuService) {
         this.menuService.menu.subscribe((menu: any) => {
-            if (menu?.items) this.menu = menu.items;
-            console.log(this.menu);
+            if (menu.items) {
+                this.menu = menu.items;
+            }
         });
 
         this.menuService.tabs.subscribe((tabs: any) => {
-            if (this.tabs) this.tabs = tabs;
-            console.log(this.tabs);
+            if (tabs) {
+                this.filteredItems = [];
+                this.tabs = tabs;
+            }
+            console.log(tabs);
+        });
+
+        this.menuService.filtered.subscribe((data: any) => {
+            if (data.length) {
+                this.filteredItems = data;
+                this.selectedIdx = 0;
+                this.tabs = [];
+            } else {
+                this.filteredItems = [];
+            }
         });
     }
 

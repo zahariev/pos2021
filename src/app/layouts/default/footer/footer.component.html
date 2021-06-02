@@ -3,7 +3,8 @@
     <footer fxFlexlayout class="tabContent">
         <!-- <span fxFlex="20" id="tradeMark"> -->
         <button mat-button class="tab" (click)="toggleOpenTables()">
-            <mat-icon>keyboard_arrow_up</mat-icon> opened bills {{3}}
+            <mat-icon>{{state!="open"?"keyboard_arrow_up":"keyboard_arrow_down"}}</mat-icon>
+            opened bills {{3}}
         </button>
         <!-- </span> -->
         <!-- <span fxFlex="20" id="tradeMark"> &copy; {{'COMMON.TM' | translate}} </span> -->

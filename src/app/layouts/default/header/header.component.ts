@@ -10,6 +10,7 @@ import {
 } from '@angular/core';
 import { User } from '@shared/models/user';
 import { UserService } from '@app/shared/services/auth/user.service';
+import { MenuService } from '@app/core/services/menu.service';
 
 @Component({
     selector: 'app-header',
@@ -23,7 +24,11 @@ export class HeaderComponent implements OnInit {
 
     value = '';
     user!: User;
-    constructor(public authService: AuthService, public userService: UserService) {
+    constructor(
+        public authService: AuthService,
+        public userService: UserService,
+        public menuService: MenuService,
+    ) {
         userService.activeUser.subscribe((user: any) => (this.user = user));
     }
 
@@ -55,6 +60,10 @@ export class HeaderComponent implements OnInit {
         const target = event.target as HTMLTextAreaElement;
 
         this.value = target.value;
+        this.menuService.filterMenu(this.value);
+    }
+    cancelSearch(ev: any) {
+        this.menuService.getTabItems();
     }
     signOut() {}
 }

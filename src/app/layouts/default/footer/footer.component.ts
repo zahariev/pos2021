@@ -22,7 +22,7 @@ enum TabState {
                 'open',
                 style({
                     bottom: 'initial',
-                    top: '80vh',
+                    top: '81vh',
                 }),
             ),
             transition('default <=> open', animate(200)),

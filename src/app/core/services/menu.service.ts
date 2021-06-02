@@ -12,18 +12,22 @@ const menuUrl =
     providedIn: 'root',
 })
 export class MenuService {
+    rawMenu: any;
     private $tabsSource = new BehaviorSubject(new Array());
     public tabs = this.$tabsSource.asObservable();
 
     private $menuSource = new BehaviorSubject(new Array());
     public menu = this.$menuSource.asObservable();
 
+    private $filtered = new BehaviorSubject(new Array());
+    public filtered = this.$filtered.asObservable();
+
     constructor(private http: HttpService) {
         this.getTabItems();
         this.getMenuData();
     }
 
-    private getTabItems(): void {
+    public getTabItems(): void {
         this.http.get(tabsUrl).subscribe((data) => {
             this.$tabsSource.next(data);
         });
@@ -32,6 +36,21 @@ export class MenuService {
     private getMenuData(): void {
         this.http.get(menuUrl).subscribe((data) => {
             this.$menuSource.next(data);
+            this.rawMenu = data;
         });
+    }
+
+    filterMenu(value: string) {
+        value = value.trim().toLowerCase();
+        const items: any = { ...this.rawMenu.items };
+
+        const filtered: any = [];
+        Object.values(items)?.forEach((item: any) => {
+            if (item.name.toLowerCase().indexOf(value) > -1) {
+                filtered.push(item);
+            }
+        });
+
+        this.$filtered.next(filtered);
     }
 }

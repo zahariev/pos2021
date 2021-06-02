@@ -8,21 +8,19 @@ footer {
 }
 
 .tab {
-    // height: 35px;
-    // width: 100px;
-    // background-color: mat-color($webapp-primary, 700);
     padding: 0px;
     position: absolute;
     left: 2px;
     top: 0;
     zoom: 0.9;
-    // border-radius: 0.5em 0.5em 0 0;
-    // box-shadow: 0 0.05em #b7b7b7;
+}
+mat-icon {
+    padding-top: 5px;
 }
 
 .tabContainer {
     position: fixed;
-    bottom: -45px;
+    bottom: -55px;
     width: 72%;
     z-index: 9;
     overflow: hidden;

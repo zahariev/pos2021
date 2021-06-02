@@ -31,7 +31,7 @@
                         mat-icon-button
                         class="clear-icon-button"
                         aria-label="Clear"
-                        (click)="searchInput.value=''"
+                        (click)="cancelSearch($event);searchInput.value=''"
                     >
                         <mat-icon *ngIf="searchInput.value.length">close</mat-icon>
                     </button>
