@@ -45,7 +45,6 @@ export class ItemboardComponent implements OnInit {
                 this.filteredItems = [];
                 this.tabs = tabs;
             }
-            console.log(tabs);
         });
 
         this.menuService.filtered.subscribe((data: any) => {

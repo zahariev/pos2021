@@ -60,9 +60,10 @@ export class HeaderComponent implements OnInit {
         const target = event.target as HTMLTextAreaElement;
 
         this.value = target.value;
-        this.menuService.filterMenu(this.value);
+        if (this.value.length) this.menuService.filterMenu(this.value);
+        else this.cancelSearch();
     }
-    cancelSearch(ev: any) {
+    cancelSearch() {
         this.menuService.getTabItems();
     }
     signOut() {}
