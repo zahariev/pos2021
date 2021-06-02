@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatTreeNestedDataSource } from '@angular/material/tree';
 import { HttpClient } from '@angular/common/http';
 
-const ROOTS = ['dashboard', 'admin', 'system-settings'];
+const ROOTS = ['itemboard', 'admin', 'system-settings'];
 interface TreeNode {
     name: string;
     children?: TreeNode[];

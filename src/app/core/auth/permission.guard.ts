@@ -35,7 +35,7 @@ export class PermissionGuard implements CanActivate {
             else {
                 const newRoute = this.historyService.getLastNonLoginUrl();
                 if (this.userService.hasClaim(newRoute)) this.router.navigateByUrl(newRoute);
-                else this.router.navigateByUrl('dashboard');
+                else this.router.navigateByUrl('itemboard');
             }
         }
         return false;

@@ -22,7 +22,9 @@ ul {
     display: inline-flex;
     align-items: center;
     width: 200px;
-
+    button {
+        z-index: 9;
+    }
     img {
         cursor: pointer;
         height: 50px;

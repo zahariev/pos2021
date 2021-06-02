@@ -25,7 +25,8 @@ export class DefaultComponent {
 
     leftBarToggler(): void {
         this.leftBarOpen = !this.leftBarOpen;
-        if (!this.leftBarOpen) this.router.navigate(['/dashboard']);
+        if (!this.leftBarOpen) this.router.navigate(['/itemboard']);
+        else this.router.navigate(['/dashboard']);
     }
 
     rightBarToggler(): void {

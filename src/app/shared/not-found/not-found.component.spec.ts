@@ -25,7 +25,7 @@ describe('NotFoundComponent', () => {
         await TestBed.configureTestingModule({
             imports: [
                 MatCardModule,
-                RouterTestingModule.withRoutes([{ path: 'dashboard', component: DummyComponent }]),
+                RouterTestingModule.withRoutes([{ path: 'itemboard', component: DummyComponent }]),
             ],
             declarations: [NotFoundComponent, TranslatePipeMock],
         }).compileComponents();
@@ -53,7 +53,7 @@ describe('NotFoundComponent', () => {
         expect(elements.querySelector('button')).toBeTruthy();
     });
 
-    it('should redirect to dashboard on "Return" button click()', fakeAsync(() => {
+    it('should redirect to itemboard on "Return" button click()', fakeAsync(() => {
         const elements = fixture.debugElement.nativeElement;
 
         const button = elements.querySelector('button');
@@ -61,7 +61,7 @@ describe('NotFoundComponent', () => {
         tick();
         fixture.detectChanges();
         fixture.whenStable().then(() => {
-            expect(location.path()).toBe('/dashboard');
+            expect(location.path()).toBe('/itemboard');
         });
     }));
 });

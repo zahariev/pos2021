@@ -7,7 +7,7 @@ import { HistoryService } from './history.service';
 
 describe('HistoryService', () => {
     let service: HistoryService;
-    const urls = ['/login', '/dashboard/user-profile', '/dashboard/users', '/login'];
+    const urls = ['/login', '/itemboard/user-profile', '/itemboard/users', '/login'];
     beforeEach(() => {
         TestBed.configureTestingModule({
             providers: [
@@ -36,10 +36,10 @@ describe('HistoryService', () => {
     });
 
     it('should call getLastNonLoginUrl() function and return true', () => {
-        expect(service.getLastNonLoginUrl(urls)).toEqual('/dashboard/users');
+        expect(service.getLastNonLoginUrl(urls)).toEqual('/itemboard/users');
     });
 
     it('should call getPreviousUrl() function and return true', () => {
-        expect(service.getPreviousUrl(urls)).toEqual('/dashboard/users');
+        expect(service.getPreviousUrl(urls)).toEqual('/itemboard/users');
     });
 });

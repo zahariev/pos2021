@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { DashboardComponent } from './modules/dashboard/dashboard.component';
+import { ItemboardComponent } from './modules/itemboard/itemboard.component';
 import { DefaultComponent } from './layouts/default/default.component';
 import { NotFoundComponent } from './shared/not-found/not-found.component';
 import { ProfileComponent } from './modules/profile/profile.component';
 import { AuthGuard } from './core/auth/auth.guard';
+import { DashboardComponent } from './modules/dashboard/dashboard.component';
 
 const routes: Routes = [
     {
@@ -16,6 +17,12 @@ const routes: Routes = [
         component: DefaultComponent,
         canActivateChild: [AuthGuard],
         children: [
+            {
+                path: 'itemboard',
+                component: ItemboardComponent,
+                canActivate: [AuthGuard],
+            },
+
             {
                 path: 'dashboard',
                 component: DashboardComponent,
@@ -34,13 +41,13 @@ const routes: Routes = [
                 canActivate: [AuthGuard],
             },
 
-            { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+            { path: '', redirectTo: 'itemboard', pathMatch: 'full' },
 
             { path: '**', redirectTo: 'notfound', pathMatch: 'full' },
         ],
     },
 
-    { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+    { path: '', redirectTo: 'itemboard', pathMatch: 'full' },
     { path: '404', redirectTo: 'notfound', pathMatch: 'full' },
     { path: '**', redirectTo: '404' },
 ];

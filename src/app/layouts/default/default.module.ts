@@ -13,6 +13,7 @@ import { RightBarComponent } from '@app/layouts/default/right-bar/right-bar.comp
 import { OrderComponent } from '@app/core/components/order/order.component';
 import { HistoryComponent } from '@app/core/components/history/history.component';
 import { OpenbillDetailsComponent } from '@app/core/components/openbill-details/openbill-details.component';
+import { DashboardComponent } from '../../modules/dashboard/dashboard.component';
 
 @NgModule({
     declarations: [
@@ -24,6 +25,7 @@ import { OpenbillDetailsComponent } from '@app/core/components/openbill-details/
         OrderComponent,
         HistoryComponent,
         OpenbillDetailsComponent,
+        DashboardComponent,
     ],
     imports: [CommonModule, MaterialModule, RouterModule, SharedModule, HttpClientModule],
     providers: [],

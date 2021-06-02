@@ -18,7 +18,7 @@ describe('SidebarComponent', () => {
     let component: SidebarComponent;
     let fixture: ComponentFixture<SidebarComponent>;
 
-    const menu1 = { DASHBOARD: 'Dashboard' };
+    const menu1 = { DASHBOARD: 'Itemboard' };
 
     const menu2 = {
         SETTINGS: 'Settings',

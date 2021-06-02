@@ -32,11 +32,11 @@
         {
             "id": 29,
             "label": "In-fleet dalay",
-            "path": "dashboard/in-fleet-delay",
+            "path": "itemboard/in-fleet-delay",
             "active": false
         },
-        { "id": 30, "label": "Invoice delay", "path": "dashboard/invoice-delay", "active": false },
-        { "id": 31, "label": "Renew EVN", "path": "dashboard/renew-evn", "active": false },
+        { "id": 30, "label": "Invoice delay", "path": "itemboard/invoice-delay", "active": false },
+        { "id": 31, "label": "Renew EVN", "path": "itemboard/renew-evn", "active": false },
         { "id": 32, "label": "PDI center", "path": "master-data/pdi-center", "active": false },
         { "id": 34, "label": "Edit user details", "path": "admin/users/edit", "active": false },
         {
@@ -45,9 +45,9 @@
             "path": "admin/users/edit-permissions",
             "active": false
         },
-        { "id": 38, "label": "edit", "path": "dashboard/in-fleet-delay/edit", "active": false },
-        { "id": 39, "label": "edit", "path": "dashboard/invoice-delay/edit", "active": false },
-        { "id": 40, "label": "edit", "path": "dashboard/renew-evn/edit", "active": false },
+        { "id": 38, "label": "edit", "path": "itemboard/in-fleet-delay/edit", "active": false },
+        { "id": 39, "label": "edit", "path": "itemboard/invoice-delay/edit", "active": false },
+        { "id": 40, "label": "edit", "path": "itemboard/renew-evn/edit", "active": false },
         { "id": 48, "label": "edit", "path": "reports/shortened-costs/edit", "active": false },
         { "id": 49, "label": "edit", "path": "master-data/supplier/edit", "active": false },
         { "id": 50, "label": "edit", "path": "master-data/pdi-center/edit", "active": false },

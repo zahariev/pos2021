@@ -49,3 +49,12 @@ body {
 
 @import './assets/styles/styles-variables.scss';
 @import './assets/fonts/fonts.scss';
+
+.mat-tab-header {
+    margin-left: 60px !important;
+}
+
+.mat-tab-group {
+    position: fixed;
+    top: 12px;
+}

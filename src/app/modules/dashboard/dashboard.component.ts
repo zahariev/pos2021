@@ -8,7 +8,5 @@ import { Component, OnInit } from '@angular/core';
 export class DashboardComponent implements OnInit {
     constructor() {}
 
-    ngOnInit(): void {
-        const a = 0;
-    }
+    ngOnInit(): void {}
 }

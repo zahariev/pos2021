@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ProfileComponent } from '../modules/profile/profile.component';
-import { DashboardComponent } from '../modules/dashboard/dashboard.component';
+import { ItemboardComponent } from '../modules/itemboard/itemboard.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { MaterialModule } from './material.module';
 import { RouterModule } from '@angular/router';
@@ -14,7 +14,7 @@ import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.componen
 @NgModule({
     declarations: [
         ProfileComponent,
-        DashboardComponent,
+        ItemboardComponent,
         NotFoundComponent,
         HasClaimDirective,
         ConfirmDialogComponent,

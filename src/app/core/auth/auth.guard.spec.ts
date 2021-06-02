@@ -20,7 +20,7 @@ describe('AuthGuardService', () => {
     };
 
     const createMockRouteState = (): RouterStateSnapshot => {
-        return { url: '/dashboard/user-profile', root: new ActivatedRouteSnapshot() };
+        return { url: '/itemboard/user-profile', root: new ActivatedRouteSnapshot() };
     };
     beforeEach(() => {
         TestBed.configureTestingModule({
@@ -35,7 +35,7 @@ describe('AuthGuardService', () => {
         });
     });
 
-    const route = createMockRoute('/dashboard');
+    const route = createMockRoute('/itemboard');
     const state = createMockRouteState();
     it(
         'checks if a user is valid',

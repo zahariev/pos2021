@@ -1,7 +1,7 @@
 [
     {
         "label": "Dashobard",
-        "path": "dashboard",
+        "path": "itemboard",
         "id": 4,
         "type": "admin-type",
         "children": []
