@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
     styleUrls: ['./right-bar.component.scss'],
 })
 export class RightBarComponent implements OnInit {
+    history = 0;
+    bill = 0;
     constructor() {}
 
     ngOnInit(): void {}

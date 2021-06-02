@@ -10,6 +10,9 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { MaterialModule } from 'src/app/shared/material.module';
 import { HttpClientModule } from '@angular/common/http';
 import { RightBarComponent } from '@app/core/right-bar/right-bar.component';
+import { OrderComponent } from '@app/core/order/order.component';
+import { HistoryComponent } from '@app/core/history/history.component';
+import { OpenbillDetailsComponent } from '@app/core/openbill-details/openbill-details.component';
 
 @NgModule({
     declarations: [
@@ -18,6 +21,9 @@ import { RightBarComponent } from '@app/core/right-bar/right-bar.component';
         FooterComponent,
         SidebarComponent,
         RightBarComponent,
+        OrderComponent,
+        HistoryComponent,
+        OpenbillDetailsComponent,
     ],
     imports: [CommonModule, MaterialModule, RouterModule, SharedModule, HttpClientModule],
     providers: [],
