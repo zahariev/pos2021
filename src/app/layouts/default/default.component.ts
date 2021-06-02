@@ -1,6 +1,7 @@
 import { UserService } from '@app/shared/services/user.service';
 import { Component, OnInit } from '@angular/core';
 import { User } from '@app/shared/models/user';
+import { Router } from '@angular/router';
 const map: { [key: string]: string } = {};
 
 // eslint-disable-next-line prefer-arrow/prefer-arrow-functions
@@ -13,10 +14,10 @@ const getProperty = function <T, K extends keyof T>(o: T, propertyName: K): T[K]
     styleUrls: ['./default.component.scss'],
 })
 export class DefaultComponent {
-    leftBarOpen = true;
+    leftBarOpen = false;
     rightBarOpen = true;
     user!: User | null;
-    constructor(public userService: UserService) {
+    constructor(public userService: UserService, private router: Router) {
         this.userService.user$.subscribe((user) => {
             this.user = user;
         });
@@ -24,9 +25,10 @@ export class DefaultComponent {
 
     leftBarToggler(): void {
         this.leftBarOpen = !this.leftBarOpen;
+        if (!this.leftBarOpen) this.router.navigate(['/dashboard']);
     }
 
     rightBarToggler(): void {
-        this.rightBarOpen = !this.rightBarOpen;
+        // this.rightBarOpen = !this.rightBarOpen;
     }
 }
