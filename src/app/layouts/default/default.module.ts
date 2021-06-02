@@ -9,9 +9,16 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { MaterialModule } from 'src/app/shared/material.module';
 import { HttpClientModule } from '@angular/common/http';
+import { RightBarComponent } from '@app/core/right-bar/right-bar.component';
 
 @NgModule({
-    declarations: [DefaultComponent, HeaderComponent, FooterComponent, SidebarComponent],
+    declarations: [
+        DefaultComponent,
+        HeaderComponent,
+        FooterComponent,
+        SidebarComponent,
+        RightBarComponent,
+    ],
     imports: [CommonModule, MaterialModule, RouterModule, SharedModule, HttpClientModule],
     providers: [],
 })

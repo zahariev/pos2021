@@ -7,7 +7,7 @@
         <app-sidebar *ngIf="user?.id"></app-sidebar>
     </mat-drawer>
     <mat-drawer id="rightDrawer" mode="side" [opened]="rightBarOpen" position="end">
-        <app-sidebar *ngIf="user?.id"></app-sidebar>
+        <right-bar *ngIf="user?.id"></right-bar>
     </mat-drawer>
 
     <mat-drawer-content>
