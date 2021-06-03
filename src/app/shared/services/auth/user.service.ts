@@ -47,14 +47,14 @@ export class UserService {
         }
     }
 
-    filterMenu(data: any): any {
+    filterTree(data: any): any {
         const res: any = [];
 
         data.forEach((element: any) => {
             if (!element.children?.length) {
                 if (this.hasClaim(element.path)) res.push(element);
             } else {
-                const children = this.filterMenu(element.children);
+                const children = this.filterTree(element.children);
 
                 element.children = children;
                 if (children.length && this.hasClaim(element.path)) {

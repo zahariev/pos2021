@@ -31,9 +31,10 @@ export class ItemboardComponent implements OnInit {
     tabs: any = [];
     state = 'default';
     selectedIdx = 0;
-    filteredItems: any[] = [];
+    filtered: any = {};
 
     constructor(private menuService: MenuService) {
+        this.menuService.filter = false;
         this.menuService.menu.subscribe((menu: any) => {
             if (menu.items) {
                 this.menu = menu.items;
@@ -42,18 +43,18 @@ export class ItemboardComponent implements OnInit {
 
         this.menuService.tabs.subscribe((tabs: any) => {
             if (tabs) {
-                this.filteredItems = [];
+                this.filtered = {};
                 this.tabs = tabs;
             }
         });
 
         this.menuService.filtered.subscribe((data: any) => {
-            if (data.length) {
-                this.filteredItems = data;
+            if (this.menuService.filter) {
+                this.filtered = data;
                 this.selectedIdx = 0;
                 this.tabs = [];
             } else {
-                this.filteredItems = [];
+                this.filtered = {};
             }
         });
     }

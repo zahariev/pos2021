@@ -13,6 +13,7 @@ const menuUrl =
 })
 export class MenuService {
     rawMenu: any;
+    filter = false;
     private $tabsSource = new BehaviorSubject(new Array());
     public tabs = this.$tabsSource.asObservable();
 
@@ -44,13 +45,23 @@ export class MenuService {
         value = value.trim().toLowerCase();
         const items: any = { ...this.rawMenu.items };
 
-        const filtered: any = [];
+        const filtered: any = {};
+        filtered.items = [];
         Object.values(items)?.forEach((item: any) => {
             if (item.name.toLowerCase().indexOf(value) > -1) {
-                filtered.push(item);
+                filtered.items.push(item);
             }
         });
+        const tabs = this.$tabsSource.getValue();
 
+        filtered.groups = [];
+        Object.values(tabs)?.forEach((tab: any) => {
+            tab.content.forEach((content: any) => {
+                if (content.name.toLowerCase().indexOf(value) > -1) {
+                    filtered.groups.push({ ...content });
+                }
+            });
+        });
         this.$filtered.next(filtered);
     }
 }

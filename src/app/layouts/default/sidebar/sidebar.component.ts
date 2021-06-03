@@ -48,9 +48,9 @@ export class SidebarComponent implements OnInit {
 
     ngOnInit() {
         this.httpClient.get('assets/menu.json').subscribe((data: any) => {
-            data = this.formatMenuData(data);
+            data = this.formatTreeData(data);
 
-            const menuData = [...this.userService.filterMenu(data)];
+            const menuData = [...this.userService.filterTree(data)];
 
             // get active route id to open sidebar tree menu
             menuData.forEach((el: any, id: number) => {
@@ -112,7 +112,7 @@ export class SidebarComponent implements OnInit {
         this.treeControl.expand(this.treeControl.dataNodes[this.expandedNodeID]);
     }
 
-    formatMenuData(data: any[]) {
+    formatTreeData(data: any[]) {
         // strip down 2nd level childs
         const newMenu: any = [];
         data.forEach((menu: any) => {
