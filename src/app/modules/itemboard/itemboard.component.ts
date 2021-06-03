@@ -2,6 +2,7 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { MenuService } from '@app/core/services/menu.service';
+import { OrderService } from '@app/core/services/order.service';
 
 @Component({
     selector: 'app-itemboard',
@@ -33,7 +34,7 @@ export class ItemboardComponent implements OnInit {
     selectedIdx = 0;
     filtered: any = {};
 
-    constructor(private menuService: MenuService) {
+    constructor(private menuService: MenuService, private order: OrderService) {
         this.menuService.filter = false;
         this.menuService.menu.subscribe((menu: any) => {
             if (menu.items) {
@@ -62,6 +63,12 @@ export class ItemboardComponent implements OnInit {
     ngOnInit(): void {
         const a = 0;
     }
+
+    markItem(item: any) {
+        this.order.addItem(item);
+        console.log(this.order.sumTotal);
+    }
+
     toggleOpenTables() {
         this.state === 'default' ? (this.state = 'open') : (this.state = 'default');
     }

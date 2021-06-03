@@ -37,6 +37,7 @@
                             class="resize button Item"
                             [class.Group]="item.is_group > 0"
                             attr.data-id="-{{ item.id }}"
+                            (click)="markItem(item)"
                         >
                             <span class="center3">{{ item.name }}</span>
                         </div>
@@ -56,6 +57,7 @@
                             class="resize button Item"
                             [class.Group]="item.is_group > 0"
                             attr.data-id="-{{ item.id }}"
+                            (click)="markItem(item)"
                         >
                             <span class="center3">{{ item.name }}</span>
                         </div>
@@ -79,6 +81,7 @@
                             class="resize button Item"
                             [class.Group]="item.is_group > 0"
                             attr.data-id="-{{ item.id }}"
+                            (click)="markItem(item)"
                         >
                             <span class="center3">{{ item.name }}</span>
                         </div>

@@ -1,0 +1,21 @@
+<div id="btn-1">
+    <div id="btn-2">
+        <ul id="nav">
+            <li (click)="toggleQty($event)" class="page_item buttons">
+                <a class="fadeThis" id="qtyButton">
+                    <span id="msg"> {{ order.qtyStr }} </span>
+                </a>
+            </li>
+            <li (click)="subTotal($event)" *ngIf="getListItemsLength()" class="page_item buttons">
+                <a class="fadeThis" id="totalButton">
+                    <span id="text"> Total</span>
+                </a>
+            </li>
+            <li (click)="voidItem()" *ngIf="getListItemsLength()" class="page_item buttons">
+                <a class="fadeThis" id="voidButton">
+                    <span>void</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>

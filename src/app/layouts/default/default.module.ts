@@ -16,9 +16,15 @@ import { OrderComponent } from '@app/core/components/order/order.component';
 import { HistoryComponent } from '@app/core/components/history/history.component';
 import { OpenbillDetailsComponent } from '@app/core/components/openbill-details/openbill-details.component';
 import { DashboardComponent } from '../../modules/dashboard/dashboard.component';
+import { DetailsComponent } from '@app/core/components/order/details/details.component';
+import { ItemListComponent } from '@app/core/components/order/details/item-list/item-list.component';
+import { OrderButtonsComponent } from '@app/core/components/order/details/order-buttons/order-buttons.component';
 
 @NgModule({
     declarations: [
+        OrderButtonsComponent,
+        ItemListComponent,
+        DetailsComponent,
         DefaultComponent,
         HeaderComponent,
         FooterComponent,

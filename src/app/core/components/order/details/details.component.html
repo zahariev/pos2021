@@ -1,0 +1,54 @@
+<div class="order">
+    Table
+    <div id="Order" class="">
+        <!--<div id='lbl_Message'>  {{ order.warning }} </div>-->
+
+        <!-- Order body -->
+        <div id="orderBody">
+            <!-- Order HEADER -->
+
+            <app-item-list [itemList]="order.items"> </app-item-list>
+
+            <div id="orderTotal" *ngIf="order.sumTotal">
+                {{ order.sumTotal | number: "1.2-2" }} лв.
+            </div>
+        </div>
+        <!-- /Order body -->
+
+        <!-- Buttons -->
+
+        <app-order-buttons> </app-order-buttons>
+
+        <!-- /Buttons -->
+    </div>
+</div>
+
+<!--
+<div id="orderHeader">
+  <div
+    id="tableName"
+    (click)="tableNameClick($event)"
+    class="post-title "
+  >
+    <span *ngIf="!order.table.name && !order.table.comment">
+      . . . <br
+    /></span>
+    <span *ngIf="order.table.name">
+      {{ order.table.name }}
+      <span id="clientId" *ngIf="order.table.clientID">
+        {{ order.table.clientID }}
+      </span>
+      <br
+    /></span>
+
+    <span id="tableComment" *ngIf="order.table.comment">
+      {{ order.table.comment }}
+    </span>
+    <span id="tableDisc" *ngIf="order.table.disc">
+      {{ order.table.disc }}%</span
+    >
+  </div>
+</div>
+  <div id="orderLabel" *ngIf="!order.table.disc"><br />
+
+  </div> -->

@@ -1,0 +1,33 @@
+<div id="orderLabel">
+    <br />
+</div>
+
+<div id="itemList">
+    <div *ngFor="let item of itemList">
+        <div id="ticketItem_LIST" *ngIf="item.comm != '+'">
+            <div class="itemQty">
+                {{ item.qty }} &nbsp; x &nbsp;
+                <span *ngIf="item.comm == 'mix'"> {{ item.comm }} </span>
+                <span> {{ item.name }} </span>
+            </div>
+            <div class="itemPrice">
+                {{ item.qty * item.price | number: "1.2-2"}}
+                <!-- | number: "1.2-2" }} -->
+            </div>
+        </div>
+        <div *ngFor="let sItem of item.mixList">
+            <div class="itemQty sub">
+                {{ sItem.qty }} &nbsp; x &nbsp;
+                <span> {{ sItem.name }} </span>
+
+                <!-- <div class="itemPrice sub"> {{ (sItem.qty*sItem.price)|number:'1.2-2' }} </div> -->
+            </div>
+        </div>
+        <span class="mixPrice" *ngIf="item.mixList && !item.sales_qty"
+            >{{ getMixSum(item.mixList) }}</span
+        >
+    </div>
+
+    <br />
+    <br />
+</div>
