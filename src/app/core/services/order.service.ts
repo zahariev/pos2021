@@ -25,10 +25,8 @@ export class OrderService {
             lastItem.qty = lastItem.qty + qty;
         } else {
             item.qty = 0 + qty;
-            this.items.push(item);
+            this.items.push({ ...item });
         }
-        console.log(this.items[0]);
-
         localStorage.setItem('order', JSON.stringify(this.getOrderProperties()));
     }
 

@@ -66,7 +66,6 @@ export class ItemboardComponent implements OnInit {
 
     markItem(item: any) {
         this.order.addItem(item);
-        console.log(this.order.sumTotal);
     }
 
     toggleOpenTables() {
