@@ -31,23 +31,6 @@ export class OrderButtonsComponent implements OnInit {
     }
 
     public toggleQty(qty: any) {
-        switch (this.order.qtyStr) {
-            case '1':
-                this.order.qtyStr = '1/2';
-                this.order.qty = 0.5;
-                break;
-            case '1/2':
-                this.order.qtyStr = '1/3';
-                this.order.qty = 0.3;
-                break;
-            case '1/3':
-                this.order.qtyStr = '1/4';
-                this.order.qty = 0.25;
-                break;
-            case '1/4':
-                this.order.qtyStr = '1';
-                this.order.qty = 1;
-                break;
-        }
+        this.order.setQty(qty);
     }
 }

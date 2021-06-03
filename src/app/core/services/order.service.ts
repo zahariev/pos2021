@@ -9,6 +9,7 @@ export class OrderService {
     user: any;
     qty = 1;
     qtyStr = '1';
+    history: any[] = [];
 
     constructor() {
         // let local = localStorage.getItem('order') as string;
@@ -20,21 +21,50 @@ export class OrderService {
     }
 
     addItem(item: any, qty: any = this.qty) {
+        this.history.push(JSON.parse(JSON.stringify({ items: this.items })));
         const lastItem = this.items[this.items.length - 1];
-        if (lastItem?.id === item.id) {
+        if (this.items.indexOf(item) > -1) {
+            item.qty += qty;
+        } else if (lastItem?.id === item.id) {
             lastItem.qty = lastItem.qty + qty;
         } else {
-            item.qty = 0 + qty;
+            item.qty = qty;
             this.items.push({ ...item });
         }
+
+        this.qty = 1;
+        this.qtyStr = '1';
+
         localStorage.setItem('order', JSON.stringify(this.getOrderProperties()));
     }
 
     voidLastItem() {
-        this.items.pop();
+        console.log(this.history);
+
+        this.items = [...this.history.pop().items];
+        this.items = [...this.items];
     }
 
-    setQty(qty: any) {}
+    setQty(qty: any) {
+        switch (this.qtyStr) {
+            case '1':
+                this.qtyStr = '1/2';
+                this.qty = 0.5;
+                break;
+            case '1/2':
+                this.qtyStr = '1/3';
+                this.qty = 0.3;
+                break;
+            case '1/3':
+                this.qtyStr = '1/4';
+                this.qty = 0.25;
+                break;
+            case '1/4':
+                this.qtyStr = '1';
+                this.qty = 1;
+                break;
+        }
+    }
     subTotal() {}
 
     getOrderProperties() {

@@ -1,4 +1,12 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import {
+    Component,
+    EventEmitter,
+    Input,
+    OnChanges,
+    OnInit,
+    Output,
+    SimpleChanges,
+} from '@angular/core';
 
 @Component({
     selector: 'app-item-list',
@@ -7,6 +15,7 @@ import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/cor
 })
 export class ItemListComponent implements OnInit, OnChanges {
     @Input() itemList: any;
+    @Output() markItemEvent: EventEmitter<any> = new EventEmitter();
 
     constructor() {}
 
@@ -18,6 +27,9 @@ export class ItemListComponent implements OnInit, OnChanges {
         console.log(changes);
     }
 
+    public markItem(item: any) {
+        this.markItemEvent.emit(item);
+    }
     public getMixSum(list: any) {
         if (!list || !list.length) return;
 
