@@ -4,7 +4,12 @@
 
 <div id="itemList">
     <div *ngFor="let item of itemList">
-        <div id="ticketItem_LIST" *ngIf="item.comm != '+'" (click)="markItem(item)">
+        <div
+            id="ticketItem_LIST"
+            *ngIf="item.comm != '+'"
+            (click)="markItem(item)"
+            (contextmenu)="markItem(item,-1)"
+        >
             <div class="itemQty">
                 {{ item.qty }} &nbsp; x &nbsp;
                 <span *ngIf="item.comm == 'mix'"> {{ item.comm }} </span>

@@ -20,7 +20,8 @@ export class DetailsComponent implements OnInit {
         const a = 0;
     }
 
-    markItem(item: any) {
-        this.order.addItem(item);
+    markItem(event: any) {
+        this.order.qty *= event.sign;
+        this.order.addItem(event.item);
     }
 }

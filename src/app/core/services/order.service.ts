@@ -25,8 +25,10 @@ export class OrderService {
         const lastItem = this.items[this.items.length - 1];
         if (this.items.indexOf(item) > -1) {
             item.qty += qty;
+            if (item.qty <= 0) this.items.pop();
         } else if (lastItem?.id === item.id) {
             lastItem.qty = lastItem.qty + qty;
+            if (item.qty <= 0) this.items.pop();
         } else {
             item.qty = qty;
             this.items.push({ ...item });

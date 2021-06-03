@@ -27,8 +27,8 @@ export class ItemListComponent implements OnInit, OnChanges {
         console.log(changes);
     }
 
-    public markItem(item: any) {
-        this.markItemEvent.emit(item);
+    public markItem(item: any, sign = 1) {
+        this.markItemEvent.emit({ item, sign });
     }
     public getMixSum(list: any) {
         if (!list || !list.length) return;
