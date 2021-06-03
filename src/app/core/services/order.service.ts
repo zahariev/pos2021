@@ -41,8 +41,6 @@ export class OrderService {
     }
 
     voidLastItem() {
-        console.log(this.history);
-
         this.items = [...this.history.pop().items];
         this.items = [...this.items];
     }

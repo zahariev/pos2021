@@ -23,9 +23,7 @@ export class ItemListComponent implements OnInit, OnChanges {
         const a = 0;
     }
 
-    ngOnChanges(changes: SimpleChanges) {
-        console.log(changes);
-    }
+    ngOnChanges(changes: SimpleChanges) {}
 
     public markItem(item: any, sign = 1) {
         this.markItemEvent.emit({ item, sign });

@@ -13,7 +13,6 @@ export class DetailsComponent implements OnInit {
     order: any;
     constructor(order: OrderService) {
         this.order = order;
-        console.log(order);
     }
 
     ngOnInit() {
