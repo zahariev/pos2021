@@ -66,7 +66,8 @@ export class ItemboardComponent implements OnInit {
     }
 
     markItem(item: any) {
-        this.order.addItem(item);
+        if (item.id[0] !== '-') item = { ...this.menu['-' + item.id] };
+        this.order.addItem({ ...item });
     }
 
     toggleOpenTables() {
@@ -91,17 +92,11 @@ export class ItemboardComponent implements OnInit {
     filterSubItems(ev: Event, id: any) {
         const items: any = [];
 
-        const item = this.menu[id];
+        const item = this.menu[id] || this.menu['-' + id];
 
         if (item) this.itemSubList.name = item.name;
         else return;
-        // id = "_" + id;  // to be delete after api change
-        // for (const key in this.menu) {
-        //     if ('_' + id === this.menu[key].group_id) {
-        //         items.push(this.menu[key]);
-        //         // console.log(this.order.menu.items[key])
-        //     }
-        // }
+
         Object.keys(this.menu).forEach((key: any) => {
             if ('_' + id === this.menu[key].group_id) {
                 items.push(this.menu[key]);
@@ -109,9 +104,10 @@ export class ItemboardComponent implements OnInit {
         });
 
         if (!items.length) return;
-        console.log(items);
 
         this.itemSubList.items = [...items];
+        ev.stopPropagation();
+        return false;
     }
 
     closeItemList() {

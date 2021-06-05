@@ -39,9 +39,6 @@
                             (click)="markItem(item)"
                         >
                             <span class="center3">{{ item.name }}</span>
-                            <div class="groupIcon" *ngIf="item.is_group>0">
-                                <mat-icon>menu</mat-icon>
-                            </div>
                         </div>
 
                         <br *ngIf="item.name.length == 0" clear="left" />
@@ -61,9 +58,6 @@
                             (click)="markItem(item)"
                         >
                             <span class="center3">{{ item.name }}</span>
-                            <div class="groupIcon" *ngIf="item.is_group>0">
-                                <mat-icon>menu</mat-icon>
-                            </div>
                         </div>
 
                         <br *ngIf="item.name.length == 0" clear="left" />
@@ -88,6 +82,14 @@
                             (click)="markItem(item)"
                         >
                             <span class="center3">{{ item.name }}</span>
+                            <!-- <div
+                                class="groupIcon"
+                                *ngIf="item.is_group>0"
+                                (click)="filterSubItems($event,item.id);false"
+                                (contextmenu)="onContextMenu($event)"
+                            >
+                                <mat-icon>menu</mat-icon>
+                            </div> -->
                         </div>
 
                         <br *ngIf="item.name.length == 0" clear="left" />
