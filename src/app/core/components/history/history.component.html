@@ -5,7 +5,7 @@
             <div id="orderHistory">
                 <div id="historyLabel">Поръчки</div>
                 <div *ngFor="let order of history.slice().reverse()">
-                    <div class="historyOrder">
+                    <div class="historyOrder" [class.fade]="checkTimeDiff(order.time) > 5">
                         <!-- <div class="order_top"></div> -->
 
                         <div class="historyHeader" style="display: inline-flex">

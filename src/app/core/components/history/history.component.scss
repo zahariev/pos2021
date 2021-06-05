@@ -6,7 +6,7 @@ div#historyFrame {
     font-size: 1.2em;
     height: 37%;
     margin-top: 50px;
-    width: 100%;
+    width: 98%;
 }
 
 #historyContainer {
@@ -15,7 +15,7 @@ div#historyFrame {
     margin: 0 5px 5px;
     overflow: auto;
     max-height: 100vh;
-    width: 96%;
+    width: 100%;
 }
 
 #historyLabel {
@@ -33,7 +33,7 @@ div#historyFrame {
 }
 .historyHeader {
     border-bottom: 1px dashed;
-    width: 95%;
+    width: 100%;
 }
 
 .time {
@@ -57,11 +57,17 @@ div#historyFrame {
     color: brown;
 }
 
+.fade {
+    opacity: 0.6;
+}
+
 .historyOrder {
     margin-bottom: 3px;
+    margin-right: 5px;
     background: rgb(228, 228, 228);
     border-radius: 10px;
     padding-top: 2px;
+    padding-right: 5px;
     margin-top: 10px;
 }
 
@@ -118,7 +124,7 @@ div#historyFrame {
     color: darkred;
     font-size: 110%;
     font-weight: bold;
-    right: -14.6vw;
+    right: -12.6vw;
     position: relative;
 }
 

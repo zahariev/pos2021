@@ -19,4 +19,8 @@ export class HistoryComponent implements OnInit {
     ngOnInit(): void {
         const a = 0;
     }
+
+    checkTimeDiff(timeStamp: number) {
+        return (Date.now() - timeStamp) / 1000 / 60;
+    }
 }

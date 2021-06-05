@@ -11,7 +11,12 @@
         mat-swipe-content="1"
         *ngIf="order" -->
 
-    <mat-tab-group id="itemTabs" hidden="order.user.id" [selectedIndex]="selectedIdx">
+    <mat-tab-group
+        id="itemTabs"
+        hidden="order.user.id"
+        [selectedIndex]="selectedIdx"
+        [color]="'accent'"
+    >
         <!-- <mat-tab>
             <ng-template mat-tab-label>
                 <mat-icon aria-label="Side nav toggle icon">view_carousel</mat-icon>

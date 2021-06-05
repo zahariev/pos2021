@@ -1,5 +1,6 @@
 /* eslint-disable @angular-eslint/component-selector */
 import { Component, OnInit } from '@angular/core';
+import { OrderService } from '@app/core/services/order.service';
 
 @Component({
     selector: 'right-bar',
@@ -9,7 +10,9 @@ import { Component, OnInit } from '@angular/core';
 export class RightBarComponent implements OnInit {
     history = 0;
     bill = 0;
-    constructor() {}
+    constructor(public order: OrderService) {}
 
-    ngOnInit(): void {}
+    ngOnInit(): void {
+        const a = 0;
+    }
 }

@@ -1,4 +1,4 @@
-<div class="order" (contextmenu)="(false)">
+<div class="order" (contextmenu)="(false)" *ngIf="!order.showHistory">
     Table
     <div id="Order" class="">
         <!--<div id='lbl_Message'>  {{ order.warning }} </div>-->
@@ -6,12 +6,16 @@
         <!-- Order body -->
         <div id="orderBody">
             <!-- Order HEADER -->
+            <div id="orderLabel">
+                {{order.state||order.temp.state}}
+                <br />
+            </div>
 
             <app-item-list [itemList]="order.items" (markItemEvent)="markItem($event)">
             </app-item-list>
 
-            <div id="orderTotal" *ngIf="order.sumTotal">
-                {{ order.sumTotal | number: "1.2-2" }} лв.
+            <div id="orderTotal" *ngIf="order.sumTotal||order.temp.total">
+                {{ (order.sumTotal||order.temp.total)| number: "1.2-2" }} лв.
             </div>
         </div>
         <!-- /Order body -->
