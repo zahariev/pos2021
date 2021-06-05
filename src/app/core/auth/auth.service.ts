@@ -75,9 +75,11 @@ export class AuthService {
     }
 
     private doLogoutUser() {
+        localStorage.clear();
         this.jwtToken.removeTokens();
         this.stopRefreshTokenTimer();
         this.userService.user$.next(null);
+
         this.router.navigate(['/login']);
     }
 

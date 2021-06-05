@@ -11,19 +11,21 @@
                         <div class="historyHeader" style="display: inline-flex">
                             <div style="width: 18vw">
                                 <div class="table_name">{{order.table.name}}</div>
+
                                 <span *ngIf="order.table.clientID" class="clientId"
                                     >{{order.table.clientID}}
                                 </span>
                                 <span class="comment">{{order.table.comment}}</span>
+                                <span class="userName"> {{order.user.firstName}} </span>
                             </div>
                             <div style="position: relative; right: -2.5vw">
                                 <a class="time"> {{order.time | date:'HH:mm'}} </a>
-                                <span class="userName"> {{order.user.name}} </span>
+                                <!-- <span class="userName"> {{order.user.firstName}} </span> -->
                             </div>
                         </div>
 
                         <!--LIST-->
-                        <ul *ngIf="!order.closed" class="orderDetailsList">
+                        <ul *ngIf="!order.closed||!order.table.id" class="orderDetailsList">
                             <li *ngFor="let item of order.items;">
                                 <div *ngIf="item.comm!='+'">
                                     <a>
@@ -32,7 +34,7 @@
                                         {{ item.name }}
                                     </a>
                                     <div class="itemPrice">
-                                        {{item.qty*item.price*(1-item.disc/100)|number:'1.2-2'}}лв.
+                                        {{item.qty*item.price*(1-(item.disc||0)/100)|number:'1.2-2'}}лв.
                                     </div>
                                 </div>
                                 <div *ngFor="let sItem of item.mixList">
@@ -45,7 +47,7 @@
                                 </div>
                             </li>
                         </ul>
-                        <ul *ngIf="order.closed" class="orderCLosed">
+                        <ul *ngIf="order.closed&&order.table.id" class="orderCLosed">
                             СМЕТКА ЗАКРИТА
                         </ul>
                         <!--LIST-->

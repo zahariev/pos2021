@@ -17,12 +17,11 @@ export class OrderService {
     tables: any = {};
 
     constructor(public userService: UserService, private menuService: MenuService) {
-        // let local = localStorage.getItem('order') as string;
-        // if (local) {
-        //     local = JSON.parse(localStorage.getItem('order') as string) as any;
-        //     this.items = local.items;
-        //     this.user = local.user;
-        // }
+        let local = localStorage.getItem('sales') as string;
+        if (local) {
+            local = JSON.parse(local) as any;
+            this.sales = local;
+        } else this.sales = [];
 
         this.menuService.menu.subscribe((menu: any) => {
             if (menu.tables) {
@@ -88,9 +87,11 @@ export class OrderService {
             table: {},
             closed: true,
             time: Date.now(),
+            total: this.sumTotal,
         });
         this.items = [];
-        console.log(this.sales);
+
+        localStorage.setItem('sales', JSON.stringify(this.sales));
     }
 
     getOrderProperties() {
@@ -105,5 +106,13 @@ export class OrderService {
             (sum: number, current: any) => sum + current.qty * current.price,
             0,
         );
+    }
+
+    getLocal(name: string) {
+        let local = localStorage.getItem(name) as string;
+        if (local) {
+            local = JSON.parse(name) as any;
+            // this[name as any] = local;
+        }
     }
 }
