@@ -38,6 +38,7 @@
                             [class.Group]="item.is_group > 0"
                             attr.data-id="-{{ item.id }}"
                             (click)="markItem(item)"
+                            (contextmenu)="filterSubItems(item)"
                         >
                             <span class="center3">{{ item.name }}</span>
                         </div>
@@ -58,6 +59,7 @@
                             [class.Group]="item.is_group > 0"
                             attr.data-id="-{{ item.id }}"
                             (click)="markItem(item)"
+                            (contextmenu)="filterSubItems(item)"
                         >
                             <span class="center3">{{ item.name }}</span>
                         </div>
@@ -97,3 +99,9 @@
         <div class="tabContent">text</div>
     </div> -->
 </mat-sidenav-container>
+<subItemList
+    *ngIf="itemSubList.items?.length"
+    [group]="itemSubList"
+    (closeEvent)="closeItemList()"
+    (clickItemEvent)="markItem($event)"
+></subItemList>

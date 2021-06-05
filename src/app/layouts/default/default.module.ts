@@ -19,10 +19,12 @@ import { DashboardComponent } from '../../modules/dashboard/dashboard.component'
 import { DetailsComponent } from '@app/core/components/order/details/details.component';
 import { ItemListComponent } from '@app/core/components/order/details/item-list/item-list.component';
 import { OrderButtonsComponent } from '@app/core/components/order/details/order-buttons/order-buttons.component';
+import { SubItemListComponent } from '@app/modules/itemboard/sub-item-list/sub-item-list.component';
 
 @NgModule({
     declarations: [
         OrderButtonsComponent,
+        SubItemListComponent,
         ItemListComponent,
         DetailsComponent,
         DefaultComponent,

@@ -30,6 +30,7 @@ import { OrderService } from '@app/core/services/order.service';
 export class ItemboardComponent implements OnInit {
     menu: any = [];
     tabs: any = [];
+    itemSubList: any = {};
     state = 'default';
     selectedIdx = 0;
     filtered: any = {};
@@ -70,5 +71,27 @@ export class ItemboardComponent implements OnInit {
 
     toggleOpenTables() {
         this.state === 'default' ? (this.state = 'open') : (this.state = 'default');
+    }
+
+    filterSubItems(item: any) {
+        const items: any = [];
+
+        if (this.menu.indexOf(item) > -1) this.itemSubList.name = item.name;
+        else return;
+        // id = "_" + id;  // to be delete after api change
+        this.menu.forEach((menuItem: any) => {
+            if ('_' + item.group_id === menuItem.group_id) {
+                items.push(menuItem);
+            }
+        });
+
+        if (!items.length) return;
+        // console.log(this.subWindowItems);
+
+        this.itemSubList.items = [...items];
+    }
+
+    cloaseItemList() {
+        this.itemSubList = [];
     }
 }

@@ -1,0 +1,13 @@
+<div id="subWindow" (mouseleave)="mouseLeave()" (contextmenu)="false;">
+    <div class="subWindowHeader">
+        <div class="subWindowHeader" clear="left">
+            <span class="groupName">{{group.name}}</span>
+        </div>
+    </div>
+
+    <div *ngFor="let item of group.items">
+        <div class="button Item Group resize" id="{{ item.id }}">
+            <span class="center3" (click)="clickItem($event)"> {{ item.name }}</span>
+        </div>
+    </div>
+</div>

@@ -21,6 +21,8 @@ export class OrderService {
     }
 
     addItem(item: any, qty: any = this.qty) {
+        console.log(item);
+
         this.history.push(JSON.parse(JSON.stringify({ items: this.items })));
         const lastItem = this.items[this.items.length - 1];
         if (this.items.indexOf(item) > -1) {
