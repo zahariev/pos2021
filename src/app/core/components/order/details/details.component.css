@@ -3,7 +3,7 @@
     text-align: center;
     position: relative;
     /* z-index: 1; */
-    height: 55%;
+    height: 40%;
     width: 100%;
     min-height: 235px !important;
 }
@@ -111,7 +111,7 @@ del span {
 }
 
 #orderTotal {
-    bottom: 2%;
+    bottom: 5%;
     /* font-family: "Palatino Linotype",Georgia,serif; */
     font-size: 36px;
     height: auto;

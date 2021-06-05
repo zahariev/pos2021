@@ -122,7 +122,7 @@ export class OrderService {
 
         clearTimeout(this.timer);
         this.timer = setTimeout(() => {
-            this.showHistory = true;
+            if (!this.items.length) this.showHistory = true;
         }, 1 * 60 * 1000);
 
         clearTimeout(this.orderTimer);
