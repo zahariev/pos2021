@@ -5,7 +5,7 @@
 div#historyFrame {
     font-size: 1.2em;
     height: 37%;
-    margin-top: 50px;
+    margin-top: 60px;
     width: 98%;
 }
 
@@ -14,7 +14,7 @@ div#historyFrame {
     margin-top: 17px;
     margin: 0 5px 5px;
     overflow: auto;
-    max-height: 100vh;
+    max-height: 50vh;
     width: 100%;
 }
 
@@ -30,6 +30,11 @@ div#historyFrame {
     position: absolute;
     overflow: hidden;
     z-index: 0;
+    .mat-icon {
+        right: 5px;
+        position: fixed;
+        zoom: 1.35;
+    }
 }
 .historyHeader {
     border-bottom: 1px dashed;
@@ -123,7 +128,7 @@ div#historyFrame {
     /* right: -50px; */
     color: darkred;
     font-size: 110%;
-    font-weight: bold;
+    // font-weight: bold;
     right: -12.6vw;
     position: relative;
 }

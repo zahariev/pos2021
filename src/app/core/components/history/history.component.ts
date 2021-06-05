@@ -12,7 +12,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class HistoryComponent implements OnInit {
     history: any[];
 
-    constructor(private order: OrderService) {
+    constructor(public order: OrderService) {
         this.history = order.sales;
     }
 
@@ -22,5 +22,9 @@ export class HistoryComponent implements OnInit {
 
     checkTimeDiff(timeStamp: number) {
         return (Date.now() - timeStamp) / 1000 / 60;
+    }
+
+    toggleShowHistory() {
+        this.order.showHistory = !this.order.showHistory;
     }
 }

@@ -3,7 +3,13 @@
         <!-- <div id="historyContainer" (mousewheel)="scrollWheel($event)"> -->
         <div id="historyContainer">
             <div id="orderHistory">
-                <div id="historyLabel">Поръчки</div>
+                <div id="historyLabel">
+                    Поръчки
+                    <mat-icon (click)="toggleShowHistory()"
+                        >{{order.showHistory?"expand_more":"expand_less"}}</mat-icon
+                    >
+                </div>
+
                 <div *ngFor="let order of history.slice().reverse()">
                     <div class="historyOrder" [class.fade]="checkTimeDiff(order.time) > 5">
                         <!-- <div class="order_top"></div> -->
