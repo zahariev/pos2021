@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
+import { UserService } from '@app/shared/services/auth/user.service';
 import { last } from 'rxjs/operators';
+import { MenuService } from './menu.service';
 
 @Injectable({
     providedIn: 'root',
@@ -10,26 +12,38 @@ export class OrderService {
     qty = 1;
     qtyStr = '1';
     history: any[] = [];
+    sales: any = [];
+    table: any = {};
+    tables: any = {};
 
-    constructor() {
+    constructor(public userService: UserService, private menuService: MenuService) {
         // let local = localStorage.getItem('order') as string;
         // if (local) {
         //     local = JSON.parse(localStorage.getItem('order') as string) as any;
         //     this.items = local.items;
         //     this.user = local.user;
         // }
+
+        this.menuService.menu.subscribe((menu: any) => {
+            if (menu.tables) {
+                this.tables = menu.tables;
+            }
+        });
     }
 
     addItem(item: any, qty: any = this.qty) {
         this.history.push(JSON.parse(JSON.stringify({ items: this.items })));
         const lastItem = this.items[this.items.length - 1];
+        // in mark
         if (this.items.indexOf(item) > -1) {
             item.qty += qty;
             if (item.qty <= 0) this.items.splice(this.items.indexOf(item), 1);
         } else if (lastItem?.id === item.id) {
+            // last mark
             lastItem.qty = lastItem.qty + qty;
             if (item.qty <= 0) this.items.pop();
         } else {
+            // no mark
             item.qty = qty;
             if (item.qty > 0) this.items.push({ ...item });
         }
@@ -65,7 +79,19 @@ export class OrderService {
                 break;
         }
     }
-    subTotal() {}
+
+    subTotal() {
+        console.log('subTotal');
+        this.sales.push({
+            user: this.userService.user,
+            items: this.items,
+            table: {},
+            closed: true,
+            time: Date.now(),
+        });
+        this.items = [];
+        console.log(this.sales);
+    }
 
     getOrderProperties() {
         return {

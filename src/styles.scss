@@ -59,3 +59,10 @@ body {
     position: fixed;
     top: 12px;
 }
+
+mat-drawer {
+    overflow: hidden !important;
+}
+.mat-drawer-inner-container {
+    overflow: hidden !important;
+}

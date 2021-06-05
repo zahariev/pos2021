@@ -1,1 +1,67 @@
-<p>history works!</p>
+<div *ngIf="history.length">
+    <div id="historyFrame">
+        <!-- <div id="historyContainer" (mousewheel)="scrollWheel($event)"> -->
+        <div id="historyContainer">
+            <div id="orderHistory">
+                <div id="historyLabel">Поръчки</div>
+                <div *ngFor="let order of history.slice().reverse()">
+                    <div class="historyOrder">
+                        <!-- <div class="order_top"></div> -->
+
+                        <div class="historyHeader" style="display: inline-flex">
+                            <div style="width: 18vw">
+                                <div class="table_name">{{order.table.name}}</div>
+                                <span *ngIf="order.table.clientID" class="clientId"
+                                    >{{order.table.clientID}}
+                                </span>
+                                <span class="comment">{{order.table.comment}}</span>
+                            </div>
+                            <div style="position: relative; right: -2.5vw">
+                                <a class="time"> {{order.time | date:'HH:mm'}} </a>
+                                <span class="userName"> {{order.user.name}} </span>
+                            </div>
+                        </div>
+
+                        <!--LIST-->
+                        <ul *ngIf="!order.closed" class="orderDetailsList">
+                            <li *ngFor="let item of order.items;">
+                                <div *ngIf="item.comm!='+'">
+                                    <a>
+                                        {{ item.qty }} x
+                                        <span *ngIf="item.comm"> {{ item.comm }} </span>
+                                        {{ item.name }}
+                                    </a>
+                                    <div class="itemPrice">
+                                        {{item.qty*item.price*(1-item.disc/100)|number:'1.2-2'}}лв.
+                                    </div>
+                                </div>
+                                <div *ngFor="let sItem of item.mixList">
+                                    <div class="itemQty sub">
+                                        {{ sItem.qty }} &nbsp; x &nbsp;
+                                        <span> {{ sItem.name }} </span>
+
+                                        <!-- <div class="itemPrice sub"> {{ (sItem.qty*sItem.price)|number:'1.2-2' }} </div> -->
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                        <ul *ngIf="order.closed" class="orderCLosed">
+                            СМЕТКА ЗАКРИТА
+                        </ul>
+                        <!--LIST-->
+
+                        <div class="bottom_total">
+                            <span *ngIf="order.table.disc" class="discountTotal"
+                                >-{{order.table.disc}}%
+                            </span>
+
+                            <a class="total">
+                                Тотал: <span class="sum">{{ order.total |number:'1.2-2' }}лв.</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
