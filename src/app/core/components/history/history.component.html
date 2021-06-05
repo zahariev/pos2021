@@ -1,7 +1,7 @@
 <div *ngIf="history.length">
     <div id="historyFrame">
         <!-- <div id="historyContainer" (mousewheel)="scrollWheel($event)"> -->
-        <div id="historyContainer">
+        <div id="historyContainer" [class.fullLength]="order.showHistory">
             <div id="orderHistory">
                 <div id="historyLabel">
                     Поръчки

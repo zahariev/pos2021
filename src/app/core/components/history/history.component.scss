@@ -18,6 +18,10 @@ div#historyFrame {
     width: 100%;
 }
 
+.fullLength {
+    max-height: 86vh !important;
+}
+
 #historyLabel {
     height: 20px;
     width: 100%;
@@ -31,9 +35,9 @@ div#historyFrame {
     overflow: hidden;
     z-index: 0;
     .mat-icon {
-        right: 5px;
+        right: 10px;
         position: fixed;
-        zoom: 1.35;
+        zoom: 1.5;
     }
 }
 .historyHeader {
