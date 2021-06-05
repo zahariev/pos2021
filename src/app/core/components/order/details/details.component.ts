@@ -1,5 +1,4 @@
-import { Component, OnInit, AfterViewInit, ViewChild, Input } from '@angular/core';
-import { CurrencyPipe } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
 
 import { OrderService } from '@app/core/services/order.service';
 

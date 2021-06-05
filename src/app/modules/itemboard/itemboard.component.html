@@ -1,4 +1,4 @@
-<mat-sidenav-container class="sidenav-container">
+<mat-sidenav-container class="sidenav-container" (contextmenu)="onContextMenu($event)">
     <!-- <app-numpad *ngIf="!order.user.id"></app-numpad> -->
     <!-- TABS    -->
 
@@ -36,11 +36,12 @@
                             *ngIf="item.name.length > 0"
                             class="resize button Item"
                             [class.Group]="item.is_group > 0"
-                            attr.data-id="-{{ item.id }}"
                             (click)="markItem(item)"
-                            (contextmenu)="filterSubItems(item)"
                         >
                             <span class="center3">{{ item.name }}</span>
+                            <div class="groupIcon" *ngIf="item.is_group>0">
+                                <mat-icon>menu</mat-icon>
+                            </div>
                         </div>
 
                         <br *ngIf="item.name.length == 0" clear="left" />
@@ -57,11 +58,12 @@
                             *ngIf="item.name.length > 0"
                             class="resize button Item"
                             [class.Group]="item.is_group > 0"
-                            attr.data-id="-{{ item.id }}"
                             (click)="markItem(item)"
-                            (contextmenu)="filterSubItems(item)"
                         >
                             <span class="center3">{{ item.name }}</span>
+                            <div class="groupIcon" *ngIf="item.is_group>0">
+                                <mat-icon>menu</mat-icon>
+                            </div>
                         </div>
 
                         <br *ngIf="item.name.length == 0" clear="left" />
@@ -100,7 +102,7 @@
     </div> -->
 </mat-sidenav-container>
 <subItemList
-    *ngIf="itemSubList.items?.length"
+    [hidden]="!itemSubList.items?.length"
     [group]="itemSubList"
     (closeEvent)="closeItemList()"
     (clickItemEvent)="markItem($event)"

@@ -13,7 +13,7 @@ import {
     templateUrl: './item-list.component.html',
     styleUrls: ['./item-list.component.css'],
 })
-export class ItemListComponent implements OnInit, OnChanges {
+export class ItemListComponent implements OnInit {
     @Input() itemList: any;
     @Output() markItemEvent: EventEmitter<any> = new EventEmitter();
 
@@ -22,8 +22,6 @@ export class ItemListComponent implements OnInit, OnChanges {
     ngOnInit() {
         const a = 0;
     }
-
-    ngOnChanges(changes: SimpleChanges) {}
 
     public markItem(item: any, sign = 1) {
         this.markItemEvent.emit({ item, sign });

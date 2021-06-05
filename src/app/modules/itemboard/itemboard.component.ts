@@ -73,25 +73,48 @@ export class ItemboardComponent implements OnInit {
         this.state === 'default' ? (this.state = 'open') : (this.state = 'default');
     }
 
-    filterSubItems(item: any) {
+    onContextMenu(event: Event) {
+        let target: any = event.target;
+        if (!target?.dataset?.id) target = target.parentElement;
+
+        //var value = target.attributes[2].nodeValue;
+        const value = target.dataset.id ? target.dataset.id : 0;
+
+        //  Open Window for subItems
+        this.filterSubItems(event, value);
+        // if(value) this.order.addItemById(value,1);
+        // else this.order.addItemById()
+        event.stopPropagation();
+        event.preventDefault();
+    }
+
+    filterSubItems(ev: Event, id: any) {
         const items: any = [];
 
-        if (this.menu.indexOf(item) > -1) this.itemSubList.name = item.name;
+        const item = this.menu[id];
+
+        if (item) this.itemSubList.name = item.name;
         else return;
         // id = "_" + id;  // to be delete after api change
-        this.menu.forEach((menuItem: any) => {
-            if ('_' + item.group_id === menuItem.group_id) {
-                items.push(menuItem);
+        // for (const key in this.menu) {
+        //     if ('_' + id === this.menu[key].group_id) {
+        //         items.push(this.menu[key]);
+        //         // console.log(this.order.menu.items[key])
+        //     }
+        // }
+        Object.keys(this.menu).forEach((key: any) => {
+            if ('_' + id === this.menu[key].group_id) {
+                items.push(this.menu[key]);
             }
         });
 
         if (!items.length) return;
-        // console.log(this.subWindowItems);
+        console.log(items);
 
         this.itemSubList.items = [...items];
     }
 
-    cloaseItemList() {
+    closeItemList() {
         this.itemSubList = [];
     }
 }

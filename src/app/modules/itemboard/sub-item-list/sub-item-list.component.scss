@@ -1,0 +1,54 @@
+.Item > span {
+    position: relative;
+    top: 10%;
+}
+
+.Item {
+    height: 65px;
+    width: 96px;
+}
+
+.button {
+    background: rgba(240, 235, 229, 0.9) none repeat scroll 0 0;
+    border: 1px solid #00000060;
+    border-radius: 5px;
+    color: black;
+    cursor: pointer;
+    display: block;
+    float: left;
+    font-family: Poppins, Roboto;
+    font-size: 16px;
+    line-height: 1.4;
+    margin: 3px;
+    overflow: hidden;
+    position: relative;
+    text-align: center;
+}
+
+.Group {
+    min-height: 65px;
+    width: 120px;
+}
+
+.groupName {
+    font-size: 16px;
+}
+
+.center3 {
+    position: relative;
+    top: 20% !important;
+}
+
+#subWindow {
+    position: absolute;
+    top: 30%;
+    left: 10px;
+    background-color: rgba(255, 255, 255, 1);
+    box-shadow: 0 0 15px rgba(81, 77, 92, 0.72);
+    background-clip: padding;
+    border-radius: 15px 15px 15px 15px;
+    width: 650px;
+    min-height: 70px;
+    padding: 15px;
+    z-index: 9999;
+}

@@ -24,7 +24,6 @@ import { SubItemListComponent } from '@app/modules/itemboard/sub-item-list/sub-i
 @NgModule({
     declarations: [
         OrderButtonsComponent,
-        SubItemListComponent,
         ItemListComponent,
         DetailsComponent,
         DefaultComponent,

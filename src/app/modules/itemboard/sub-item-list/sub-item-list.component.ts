@@ -19,6 +19,8 @@ export class SubItemListComponent implements OnInit {
     }
 
     clickItem(item: any) {
+        console.log(item);
+
         this.clickItemEvent.emit(item);
     }
 
