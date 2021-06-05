@@ -5,9 +5,11 @@
             <div id="orderHistory">
                 <div id="historyLabel">
                     Поръчки
-                    <mat-icon (click)="toggleShowHistory()"
-                        >{{order.showHistory?"expand_more":"expand_less"}}</mat-icon
-                    >
+                    <button mat-button>
+                        <mat-icon (click)="toggleShowHistory()"
+                            >{{order.showHistory?"expand_more":"expand_less"}}</mat-icon
+                        >
+                    </button>
                 </div>
 
                 <div *ngFor="let order of history.slice().reverse()">

@@ -18,6 +18,13 @@ div#historyFrame {
     width: 100%;
 }
 
+button {
+    right: 10px;
+    margin-top: -17px;
+    position: fixed;
+    zoom: 1.5;
+}
+
 .fullLength {
     max-height: 86vh !important;
 }
@@ -34,12 +41,8 @@ div#historyFrame {
     position: absolute;
     overflow: hidden;
     z-index: 0;
-    .mat-icon {
-        right: 10px;
-        position: fixed;
-        zoom: 1.5;
-    }
 }
+
 .historyHeader {
     border-bottom: 1px dashed;
     width: 100%;
