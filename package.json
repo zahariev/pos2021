@@ -5,6 +5,7 @@
         "ng": "ng",
         "start": "ng serve",
         "build": "ng build --prod",
+        "docs": "ng build --prod --base-href ./",
         "test": "ng test",
         "test:headless": "ng test --watch=false --browsers=ChromeHeadless",
         "test:once": "ng test --watch=false",
