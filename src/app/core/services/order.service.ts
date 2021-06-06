@@ -16,6 +16,7 @@ export class OrderService {
     table: any = {};
     tables: any = {};
     openTabs: any = [];
+    openTab: any = {};
     showHistory = false;
     sumTotal: any;
     timer: any;
@@ -52,6 +53,7 @@ export class OrderService {
         this.state = '';
         this.temp = {};
         this.showHistory = false;
+        if (!this.table.id) this.openTab = {};
         this.history.push(JSON.parse(JSON.stringify({ items: this.items })));
         const lastItem = this.items[this.items.length - 1];
         // in mark
@@ -121,14 +123,24 @@ export class OrderService {
         };
         if (this.table.id) {
             temp.closed = false;
-            this.openTabs.push(temp);
+            if (this.openTab?.table?.id) {
+                //mix items
+                const findTab = this.openTabs.filter((tab: any) => tab.table.id === this.table.id);
+                findTab[0].items = [...this.openTab.items, ...this.items];
+                findTab[0].total = this.openTab.total + this.sumTotal;
+                this.openTab = findTab[0];
+            } else {
+                this.openTabs.push(temp);
+            }
             localStorage.setItem('openTabs', JSON.stringify(this.openTabs));
         }
         this.sales.push(temp);
         this.temp = temp;
         this.items = [];
         this.table = {};
+        // this.openTab = {};
         this.sumTotal = 0;
+
         this.state = '';
 
         localStorage.setItem('sales', JSON.stringify(this.sales));
@@ -141,14 +153,15 @@ export class OrderService {
         clearTimeout(this.orderTimer);
         this.orderTimer = setTimeout(() => {
             this.temp = [];
+            this.openTab = {};
         }, 6 * 1000);
     }
 
     public setState() {
-        if (this.table.id) this.state = ' + клиент на маса';
-        else this.state = 'Нова Поръчка';
-        if (this.items.length) this.state = '';
+        if (!this.table.id) this.state = 'Нова Поръчка';
 
+        // else  this.state = ' + клиент на маса';
+        if (this.items.length) this.state = '';
         // const openTab = this.openTabs.get(this.table.id);
 
         // if (openTab) this.openTab = openTab;
@@ -181,5 +194,16 @@ export class OrderService {
             local = JSON.parse(name) as any;
             // this[name as any] = local;
         }
+    }
+
+    setTable(table: any) {
+        this.table = table;
+        this.openTab = {};
+    }
+
+    setOpenTab(tab: any) {
+        this.openTab = null;
+        this.openTab = tab;
+        this.table = tab.table;
     }
 }

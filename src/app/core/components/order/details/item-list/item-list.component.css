@@ -1,61 +1,61 @@
 #itemList {
-  position: absolute;
-  overflow: auto;
-  max-height: 100vh;
-  empty-cells: show;
-  width: 92%;
-  height: auto;
-  top: 0px;
-  bottom: 44px;
-  font-weight: 100;
-  font-size: 0.9em;
-  text-align: left;
-  margin-top: 5px;
-  margin-left: 13px;
+    position: absolute;
+    overflow: auto;
+    max-height: 100vh;
+    empty-cells: show;
+    width: 92%;
+    height: 24vh;
+    top: 0px;
+    bottom: 44px;
+    font-weight: 100;
+    font-size: 0.9em;
+    text-align: left;
+    margin-top: 5px;
+    margin-left: 13px;
 }
 
 .sub {
-  font-size: 0.8em;
-  padding-left: 14px;
+    font-size: 0.8em;
+    padding-left: 14px;
 }
 
 @media screen and (min--moz-device-pixel-ratio: 0) {
-  #itemList {
-    padding-top: 5px;
-    margin-top: 10px;
-  }
+    #itemList {
+        padding-top: 5px;
+        margin-top: 10px;
+    }
 }
 
 .itemPrice {
-  color: black;
-  float: right;
-  font-size: 0.7em;
-  font-weight: normal;
-  margin-top: 3.5px;
+    color: black;
+    float: right;
+    font-size: 0.7em;
+    font-weight: normal;
+    margin-top: 3.5px;
 }
 
 .mixPrice {
-  position: relative;
-  float: right;
-  top: -16px;
-  color: lightcoral;
-  font-size: 1.2em;
-  font-weight: 400;
+    position: relative;
+    float: right;
+    top: -16px;
+    color: lightcoral;
+    font-size: 1.2em;
+    font-weight: 400;
 }
 
 .itemQty {
-  clear: both;
-  float: left;
+    clear: both;
+    float: left;
 }
 
 #price {
-  color: #ffffff;
+    color: #ffffff;
 }
 
 #quant {
-  float: left;
+    float: left;
 }
 
 #artName {
-  float: left;
+    float: left;
 }

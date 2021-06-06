@@ -1,1 +1,48 @@
-<p>openbill-details works!</p>
+<div id="billDetailsContainer">
+    <div id="bill_details">
+        <div style="display: inline-flex">
+            <div style="width: 18vw">
+                <span class="table_name">{{order.openTab.table.name}} </span>
+                <span *ngIf="order.openTab.table.clientID" class="clientId"
+                    >{{order.openTab.table.clientID}}
+                </span>
+                <span class="comment">{{order.openTab.table.comment}}</span>
+            </div>
+            <div style="position: relative; right: -2.5vw">
+                <a id="time"> {{order.openTab.time | date:'HH:mm'}} </a>
+                <span id="userName"> {{order.openTab.user.name}} </span>
+            </div>
+        </div>
+        <div
+            id="billButton"
+            style="display: block"
+            *ngIf="!order.openTab.items.length"
+            (click)="tabTotalClick()"
+        >
+            Плащане
+        </div>
+    </div>
+    <div id="list">
+        <ul>
+            <li class="itemsList" *ngFor="let item of order.openTab.items;">
+                <div *ngIf="item.comm!='+'">
+                    <a (click)="itemListClick(item)">
+                        {{item.qty}} x
+                        <span *ngIf="item.comm"> {{ item.comm }} </span>
+                        {{item.name}}
+                    </a>
+                    <div class="itemPrice">
+                        {{(item.qty*item.price*(1-(item.disc||0)/100))|number:'1.2-2'}} лв.
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <!-- <div class="sidebar_bottom_fold"></div> -->
+
+    <div class="bottom">
+        <p class="totalBottom">
+            <a>Total: <span class="sum">{{order.openTab.total|number:'1.2-2'}}</span> </a>
+        </p>
+    </div>
+</div>

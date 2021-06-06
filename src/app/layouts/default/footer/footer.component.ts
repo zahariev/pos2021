@@ -51,7 +51,9 @@ export class FooterComponent implements OnInit {
         return !item.table.name || (!item.table.disc && !item.table.comment);
     }
 
-    billBtnClick(table: any) {
-        console.log(table);
+    billBtnClick(openTab: any) {
+        console.log(openTab);
+        this.state = 'open';
+        this.orderService.setOpenTab(openTab);
     }
 }
