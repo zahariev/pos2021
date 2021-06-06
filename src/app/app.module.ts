@@ -12,6 +12,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { JwtInterceptor } from '@app/auth/_helpers/jwt.interceptor';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { MAT_TABS_CONFIG } from '@angular/material/tabs';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 export const httpLoaderFactory = (http: HttpClient): TranslateHttpLoader => {
     return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
 };
@@ -37,6 +38,7 @@ export const httpLoaderFactory = (http: HttpClient): TranslateHttpLoader => {
     providers: [
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
         { provide: MAT_TABS_CONFIG, useValue: { animationDuration: '0ms' } },
+        { provide: LocationStrategy, useClass: HashLocationStrategy },
     ],
     bootstrap: [AppComponent],
     schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
