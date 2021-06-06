@@ -103,7 +103,7 @@ export class UserService {
     }
 
     private getUserInfo(userId: string | undefined): Observable<any> {
-        return this.http.get('/assets/userInfo.json');
+        return this.http.get('./assets/userInfo.json');
         //return this.http.getApiCall(path + `/user/${userId}`);
     }
 }
