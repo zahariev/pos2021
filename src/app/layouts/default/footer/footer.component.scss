@@ -7,13 +7,14 @@ footer {
     justify-content: space-between;
 }
 
-.tab {
+.tabSlide {
     padding: 0px;
     position: absolute;
     left: 2px;
     top: 0;
     zoom: 0.9;
 }
+
 mat-icon {
     padding-top: 5px;
 }
@@ -29,3 +30,85 @@ mat-icon {
     height: 130px;
     background-color: #fff;
 }
+
+#openTablesFrame {
+    height: 92%;
+    position: absolute;
+    width: 98%;
+    overflow: auto;
+    max-height: 100vh;
+    padding: 3px;
+    margin-top: 13px;
+    // background-color: whitesmoke;
+}
+
+// // .slide {
+// //     height: 24% !important;
+// //     transition-duration: 0.5s;
+// //     transition-property: all;
+// // }
+
+#footer-wrap {
+    background: whitesmoke none repeat scroll 0 0;
+    border-top-right-radius: 12px;
+    box-shadow: 0 0 15px rgba(81, 77, 92, 0.72);
+    bottom: 0;
+    left: 0px;
+    padding-top: 5px;
+    height: 0px;
+    opacity: 0.95;
+    position: absolute;
+    transition-duration: 0.5s;
+    transition-property: all;
+    width: 63%;
+}
+
+.comment {
+    color: brown;
+}
+
+.Discount {
+    color: blue;
+}
+
+// h4 {
+//     font-family: share, 'arial narrow', arial, sans;
+//     font-size: 150%;
+//     font-weight: normal;
+//     margin: 0.5em 0 0.2em;
+// }
+
+.tab {
+    background: rgb(240, 240, 230) none repeat scroll 0 0;
+    font-family: Poppins, Roboto;
+    font-size: 17px;
+    max-height: 61px;
+    max-width: 108px;
+    min-height: 65px;
+    min-width: 80px;
+    padding-left: 3px;
+}
+
+.button {
+    background: rgba(240, 235, 229, 0.9) none repeat scroll 0 0;
+    border: 1px solid #00000060;
+    border-radius: 5px;
+    color: black;
+    cursor: pointer;
+    display: block;
+    float: left;
+    font-family: Poppins, Roboto;
+    font-size: 16px;
+    line-height: 1.4;
+    margin: 3px;
+    overflow: hidden;
+    position: relative;
+    text-align: center;
+}
+.center {
+    line-height: 1.7em;
+}
+
+// #clientId {
+//     color: brown;
+// }

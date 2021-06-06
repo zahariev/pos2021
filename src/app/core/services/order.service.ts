@@ -15,6 +15,7 @@ export class OrderService {
     sales: any = [];
     table: any = {};
     tables: any = {};
+    openTabs: any = [];
     showHistory = false;
     sumTotal: any;
     timer: any;
@@ -28,6 +29,12 @@ export class OrderService {
             local = JSON.parse(local) as any;
             this.sales = local;
         } else this.sales = [];
+
+        let local1 = localStorage.getItem('openTabs') as string;
+        if (local1) {
+            local1 = JSON.parse(local1) as any;
+            this.openTabs = local1;
+        } else this.openTabs = [];
 
         this.menuService.menu.subscribe((menu: any) => {
             if (menu.tables) {
@@ -106,15 +113,21 @@ export class OrderService {
         const temp = {
             user: this.userService.user,
             items: this.items,
-            table: {},
+            table: this.table,
             closed: true,
             time: Date.now(),
             total: this.sumTotal,
             state: this.state,
         };
+        if (this.table.id) {
+            temp.closed = false;
+            this.openTabs.push(temp);
+            localStorage.setItem('openTabs', JSON.stringify(this.openTabs));
+        }
         this.sales.push(temp);
         this.temp = temp;
         this.items = [];
+        this.table = {};
         this.sumTotal = 0;
         this.state = '';
 

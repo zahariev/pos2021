@@ -1,3 +1,4 @@
+import { OrderService } from './../../../core/services/order.service';
 /* eslint-disable @typescript-eslint/no-unused-expressions */
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
@@ -32,8 +33,11 @@ enum TabState {
 export class FooterComponent implements OnInit {
     public version: string = version;
     state = 'default';
+    openTabs: any[];
 
-    constructor() {}
+    constructor(public orderService: OrderService) {
+        this.openTabs = orderService.openTabs;
+    }
 
     ngOnInit(): void {
         const a = 0;
@@ -41,5 +45,13 @@ export class FooterComponent implements OnInit {
 
     toggleOpenTables() {
         this.state === 'default' ? (this.state = 'open') : (this.state = 'default');
+    }
+
+    ifTextCentered(item: any) {
+        return !item.table.name || (!item.table.disc && !item.table.comment);
+    }
+
+    billBtnClick(table: any) {
+        console.log(table);
     }
 }

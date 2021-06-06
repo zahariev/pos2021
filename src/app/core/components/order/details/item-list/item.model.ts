@@ -1,31 +1,29 @@
 export class Item {
-
-     constructor (public id: number = 0,  public name: string = "",
-                  public qty: number = 1,public price: number = 0,
-                  public comm:string = "",public disc: number = 0) {
-     }
-
-
-
+    constructor(
+        public id: number = 0,
+        public name: string = '',
+        public qty: number = 1,
+        public price: number = 0,
+        public comm: string = '',
+        public disc: number = 0,
+    ) {}
 }
 
 export class User {
-     constructor (public name: string = " ..standby",
-                  public code: string = " ",
-                  public id: number = 0){
-
-     }
-
+    constructor(
+        public name: string = ' ..standby',
+        public code: string = ' ',
+        public id: number = 0,
+    ) {}
 }
 
 export class Table {
-    constructor(public name:string = " . . . ",
-                public code:number = 0,
-                public id:number = 0,
-                public comment = "") {
-
-    }
-
+    constructor(
+        public name: string = ' . . . ',
+        public code: number = 0,
+        public id: number = 0,
+        public comment = '',
+    ) {}
 }
 
 export function deepEquals(x, y) {
@@ -48,7 +46,7 @@ export function deepEquals(x, y) {
             if (x[p] === y[p]) {
                 continue; // if they have the same strict value or identity then they are equal
             }
-            if (typeof (x[p]) !== 'object') {
+            if (typeof x[p] !== 'object') {
                 return false; // Numbers, Strings, Functions, Booleans must be strictly equal
             }
             if (!deepEquals(x[p], y[p])) {

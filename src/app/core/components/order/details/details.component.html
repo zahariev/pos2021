@@ -1,7 +1,15 @@
 <div class="order" (contextmenu)="(false)" *ngIf="!order.showHistory">
     <br />
 
-    Table
+    <button mat-button [matMenuTriggerFor]="menu" (menuOpened)="menuOpened()">
+        {{order.table.name||order.temp.table?.name||"Tables"}}
+    </button>
+    <div *ngIf="order.table.id"></div>
+    <mat-menu #menu="matMenu">
+        <ng-container *ngFor="let table of freeTables">
+            <button mat-menu-item (click)="selectTable(table)">{{ table.name }}</button>
+        </ng-container>
+    </mat-menu>
     <div id="Order" class="">
         <!--<div id='lbl_Message'>  {{ order.warning }} </div>-->
 

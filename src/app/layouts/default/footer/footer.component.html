@@ -2,10 +2,35 @@
     <mat-divider></mat-divider>
     <footer fxFlexlayout class="tabContent">
         <!-- <span fxFlex="20" id="tradeMark"> -->
-        <button mat-button class="tab" (click)="toggleOpenTables()">
+        <button mat-button class="tabSlide" (click)="toggleOpenTables()">
             <mat-icon>{{state!="open"?"keyboard_arrow_up":"keyboard_arrow_down"}}</mat-icon>
             open tabs {{3}}
         </button>
+
+        <div id="openTablesFrame">
+            <!--                        <h5 id="clients"> &nbsp К л и е н т и &nbsp</h5>-->
+            <div id="openTablesContainer">
+                <div class="tabItem" *ngFor="let item of openTabs">
+                    <div class="button tab" (click)="billBtnClick(item)">
+                        <span [class.center]="ifTextCentered(item)">
+                            {{ item.table.name || item.table.comment}}
+                            <span id="clientId" *ngIf="item.table.clientID">
+                                {{ item.table.clientID }}
+                            </span>
+                            <br />
+                            <span class="comment" *ngIf="item.table.name&&item.table.comment"
+                                >{{item.table.comment}}
+                            </span>
+                            <span class="Discount" *ngIf="item.table.disc"
+                                >{{item.table.disc}}% <br
+                            /></span>
+                            {{item.total|number:'1.2-2'}}лв.</span
+                        >
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- </span> -->
         <!-- <span fxFlex="20" id="tradeMark"> &copy; {{'COMMON.TM' | translate}} </span> -->
         <!-- <span fxFlex fxLayout="row" fxLayoutAlign="flex-end" class="version">v.{{version}}</span> -->
