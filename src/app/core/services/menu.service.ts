@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-
+import { Tab } from '@app/shared/models/Tab';
+import { Item } from '@app/shared/models/item';
 import { HttpService } from '@shared/services/auth/http.service';
 import { BehaviorSubject } from 'rxjs';
 
@@ -14,10 +15,10 @@ const menuUrl =
 export class MenuService {
     rawMenu: any;
     filter = false;
-    private $tabsSource = new BehaviorSubject(new Array());
+    private $tabsSource = new BehaviorSubject<Tab[]>(new Array());
     public tabs = this.$tabsSource.asObservable();
 
-    private $menuSource = new BehaviorSubject(new Array());
+    private $menuSource = new BehaviorSubject<Item[]>(new Array());
     public menu = this.$menuSource.asObservable();
 
     private $filtered = new BehaviorSubject(new Array());
@@ -29,13 +30,13 @@ export class MenuService {
     }
 
     public getTabItems(): void {
-        this.http.get(tabsUrl).subscribe((data) => {
+        this.http.get(tabsUrl).subscribe((data: Tab[]): void => {
             this.$tabsSource.next(data);
         });
     }
 
     private getMenuData(): void {
-        this.http.get(menuUrl).subscribe((data) => {
+        this.http.get(menuUrl).subscribe((data: Item[]) => {
             this.$menuSource.next(data);
             this.rawMenu = data;
         });
@@ -43,7 +44,7 @@ export class MenuService {
 
     filterMenu(value: string) {
         value = value.trim().toLowerCase();
-        const items: any = { ...this.rawMenu.items };
+        const items: Item[] = { ...this.rawMenu.items };
 
         const filtered: any = {};
         filtered.items = [];
