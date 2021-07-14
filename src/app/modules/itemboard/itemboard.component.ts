@@ -3,6 +3,7 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
 import { Component, OnInit } from '@angular/core';
 import { MenuService } from '@app/core/services/menu.service';
 import { OrderService } from '@app/core/services/order.service';
+import { Tab } from '@app/shared/models/Tab';
 
 @Component({
     selector: 'app-itemboard',
@@ -37,13 +38,17 @@ export class ItemboardComponent implements OnInit {
 
     constructor(private menuService: MenuService, private order: OrderService) {
         this.menuService.filter = false;
-        this.menuService.menu.subscribe((menu: any) => {
-            if (menu.items) {
-                this.menu = menu.items;
+        this.menuService.menu.subscribe((data: any) => {
+            console.log(data);
+
+            if (data.items) {
+                this.menu = data.items;
             }
         });
 
-        this.menuService.tabs.subscribe((tabs: any) => {
+        this.menuService.tabs.subscribe((tabs: Tab[]) => {
+            console.log(tabs);
+
             if (tabs) {
                 this.filtered = {};
                 this.tabs = tabs;

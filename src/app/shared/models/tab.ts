@@ -6,6 +6,7 @@ export class Tab {
         id: number,
         code: string,
         indexId: number,
+        leaf: boolean,
         title: string,
         visible: boolean,
         content: { name: string; items: Partial<Item>[] }[],
