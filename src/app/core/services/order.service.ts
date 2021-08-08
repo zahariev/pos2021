@@ -37,7 +37,7 @@ export class OrderService {
             this.openTabs = local1;
         } else this.openTabs = [];
 
-        this.menuService.menu.subscribe((menu: any) => {
+        this.menuService.menuData.subscribe((menu: any) => {
             if (menu.tables) {
                 this.tables = menu.tables;
             }

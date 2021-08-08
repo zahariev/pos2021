@@ -25,7 +25,7 @@
 
             <app-tables></app-tables>
         </mat-tab> -->
-        <mat-tab *ngIf="filtered.items?.length || filtered.groups?.length">
+        <mat-tab *ngIf="filtered.length">
             <ng-template mat-tab-label>
                 <span class="iconText">Search:</span>
             </ng-template>
@@ -36,7 +36,7 @@
                         <span class="groupName"> Filtered Items</span>
                     </div>
 
-                    <div *ngFor="let item of filtered.items">
+                    <div *ngFor="let item of filtered">
                         <div
                             *ngIf="item.name.length > 0"
                             class="resize button Item"
@@ -70,20 +70,21 @@
                 </div>
             </div>
         </mat-tab>
-        <mat-tab *ngFor="let tabz of tabs" [label]="tabz.title">
+
+        <mat-tab *ngFor="let tabz of tabs" [label]="tabz.name">
             <div cdkScrollable class="md-no-animation">
-                <div *ngFor="let tab of tabz.content">
+                <div *ngFor="let tab of menu.getCategories(tabz.id)">
                     <br clear="left" />
                     <div clear="left" class="groupDevider">
                         <span class="groupName">{{ tab.name }}</span>
                     </div>
 
-                    <div *ngFor="let item of tab.items">
+                    <div *ngFor="let item of menu.getItems(tab.id)">
                         <div
                             *ngIf="item.name.length > 0"
                             class="resize button Item"
-                            [class.Group]="item.is_group > 0"
-                            attr.data-id="-{{ item.id }}"
+                            [class.Group]="item.items?.length "
+                            attr.data-id="{{ item.id }}"
                             (click)="markItem(item)"
                         >
                             <span class="center3">{{ item.name }}</span>

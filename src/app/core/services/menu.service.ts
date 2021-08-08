@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Tab } from '@app/shared/models/tab';
+import { Tab } from '@app/shared/models/interfaces/tab';
 import { Item } from '@app/shared/models/interfaces/item';
 import { HttpService } from '@shared/services/auth/http.service';
 import { BehaviorSubject } from 'rxjs';
+import { Menu } from '@app/shared/models/menu';
 
 const tabsUrl =
     'https://api.bilkata.bg/ang5/itemsGet2/?ApiKey=c7a919e51f2268e5c8eb471ae093d15d&areaID=111';
@@ -14,69 +15,40 @@ const menuUrl =
 })
 export class MenuService {
     rawMenu: any;
-    filter = false;
+    filter = '';
     private $tabsSource = new BehaviorSubject<Tab[]>(new Array());
     public tabs = this.$tabsSource.asObservable();
 
     private $menuSource = new BehaviorSubject<Item[]>(new Array());
-    public menu = this.$menuSource.asObservable();
+    public menuData = this.$menuSource.asObservable();
 
-    private $filtered = new BehaviorSubject(new Array());
+    private $filtered = new BehaviorSubject('');
     public filtered = this.$filtered.asObservable();
 
     constructor(private http: HttpService) {
-        // this.getTabItems();
         this.getTabs();
-        // this.getMenuData();
-    }
-
-    public getTabItems(): void {
-        this.http.get(tabsUrl).subscribe((data: Tab[]): void => {
-            this.$tabsSource.next(data);
-        });
+        this.getMenuData();
     }
 
     public getTabs() {
         this.http.get('/api/pos/tabs').subscribe(
             async (tabs: Tab[]): Promise<void> => {
-                console.log(tabs);
+                // console.log(tabs);
                 this.$tabsSource.next(tabs);
-
-                const items = (await this.http.get('/api/pos/menuItems').toPromise()) as Item[];
-
-                this.$menuSource.next(items);
             },
         );
     }
 
-    private getMenuData(): void {
-        this.http.get(menuUrl).subscribe((data: Item[]) => {
+    public getMenuData(): void {
+        this.http.get('/api/pos/menuItems').subscribe((data: Item[]) => {
             this.$menuSource.next(data);
-            this.rawMenu = data;
+            this.rawMenu = new Menu(data);
         });
     }
 
     filterMenu(value: string) {
         value = value.trim().toLowerCase();
-        const items: Item[] = { ...this.rawMenu.items };
 
-        const filtered: any = {};
-        filtered.items = [];
-        Object.values(items)?.forEach((item: any) => {
-            if (item.name.toLowerCase().indexOf(value) > -1) {
-                filtered.items.push(item);
-            }
-        });
-        const tabs = this.$tabsSource.getValue();
-
-        filtered.groups = [];
-        Object.values(tabs)?.forEach((tab: any) => {
-            tab.content.forEach((content: any) => {
-                if (content.name.toLowerCase().indexOf(value) > -1) {
-                    filtered.groups.push({ ...content });
-                }
-            });
-        });
-        this.$filtered.next(filtered);
+        this.$filtered.next(value);
     }
 }

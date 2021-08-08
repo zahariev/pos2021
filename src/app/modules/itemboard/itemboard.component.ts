@@ -3,7 +3,9 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
 import { Component, OnInit } from '@angular/core';
 import { MenuService } from '@app/core/services/menu.service';
 import { OrderService } from '@app/core/services/order.service';
-import { Tab } from '@app/shared/models/Tab';
+import { Item } from '@app/shared/models/interfaces/item';
+import { Menu } from '@app/shared/models/menu';
+import { Tab } from '@app/shared/models/interfaces/tab';
 
 @Component({
     selector: 'app-itemboard',
@@ -29,39 +31,43 @@ import { Tab } from '@app/shared/models/Tab';
     ],
 })
 export class ItemboardComponent implements OnInit {
-    menu: any = [];
+    menu: Menu = new Menu([]);
     tabs: any = [];
+    tabData: any = [];
+    tabsContent: any = [];
     itemSubList: any = {};
     state = 'default';
     selectedIdx = 0;
     filtered: any = {};
 
     constructor(private menuService: MenuService, private order: OrderService) {
-        this.menuService.filter = false;
-        this.menuService.menu.subscribe((data: any) => {
+        // this.menuService.filter = false;
+        this.menuService.menuData.subscribe((data: any) => {
             console.log(data);
 
-            if (data.items) {
-                this.menu = data.items;
+            if (data.length) {
+                this.menu = new Menu(data);
             }
         });
 
         this.menuService.tabs.subscribe((tabs: Tab[]) => {
-            console.log(tabs);
-
             if (tabs) {
                 this.filtered = {};
                 this.tabs = tabs;
+                this.tabData = tabs;
             }
         });
 
-        this.menuService.filtered.subscribe((data: any) => {
-            if (this.menuService.filter) {
-                this.filtered = data;
+        this.menuService.filtered.subscribe((value: any) => {
+            if (value.length) {
+                this.filtered = this.menu.searchFilter(value);
+                console.log(this.filtered);
+
                 this.selectedIdx = 0;
                 this.tabs = [];
             } else {
-                this.filtered = {};
+                this.filtered = [];
+                // this.tabs = this.tabData;
             }
         });
     }
@@ -71,7 +77,6 @@ export class ItemboardComponent implements OnInit {
     }
 
     markItem(item: any) {
-        if (item.id[0] !== '-') item = { ...this.menu['-' + item.id] };
         this.order.addItem({ ...item });
     }
 
@@ -83,13 +88,11 @@ export class ItemboardComponent implements OnInit {
         let target: any = event.target;
         if (!target?.dataset?.id) target = target.parentElement;
 
-        //var value = target.attributes[2].nodeValue;
-        const value = target.dataset.id ? target.dataset.id : 0;
+        const value = target.dataset.id;
 
         //  Open Window for subItems
         this.filterSubItems(event, value);
-        // if(value) this.order.addItemById(value,1);
-        // else this.order.addItemById()
+
         event.stopPropagation();
         event.preventDefault();
     }
@@ -97,20 +100,14 @@ export class ItemboardComponent implements OnInit {
     filterSubItems(ev: Event, id: any) {
         const items: any = [];
 
-        const item = this.menu[id] || this.menu['-' + id];
+        const item = this.menu.getItem(id);
 
         if (item) this.itemSubList.name = item.name;
         else return;
 
-        Object.keys(this.menu).forEach((key: any) => {
-            if ('_' + id === this.menu[key].group_id) {
-                items.push(this.menu[key]);
-            }
-        });
+        if (!item.items.length) return;
 
-        if (!items.length) return;
-
-        this.itemSubList.items = [...items];
+        this.itemSubList.items = [...item.items];
         ev.stopPropagation();
         return false;
     }

@@ -1,17 +1,17 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 export interface Item {
-    active: boolean;
-    category_id: number;
-    cost_price: number;
     id: number;
-    idx: number;
-    level: number;
+    parentId: number;
+    categoryId: number;
+    recipeId: number;
     name: string;
-    parent_id: number;
     price: number;
-    recipe_id: number;
+    costPrice: number;
+    saleQty: number;
     round: number;
-    sale_qty: number;
+    level: number;
+    idx: number;
     sku: string;
-    store_id: number;
+    active: boolean;
+    items: Item[];
 }
