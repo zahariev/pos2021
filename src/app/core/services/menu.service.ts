@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Tab } from '@app/shared/models/Tab';
-import { Item } from '@app/shared/models/item';
+import { Tab } from '@app/shared/models/tab';
+import { Item } from '@app/shared/models/interfaces/item';
 import { HttpService } from '@shared/services/auth/http.service';
 import { BehaviorSubject } from 'rxjs';
 
@@ -25,14 +25,28 @@ export class MenuService {
     public filtered = this.$filtered.asObservable();
 
     constructor(private http: HttpService) {
-        this.getTabItems();
-        this.getMenuData();
+        // this.getTabItems();
+        this.getTabs();
+        // this.getMenuData();
     }
 
     public getTabItems(): void {
         this.http.get(tabsUrl).subscribe((data: Tab[]): void => {
             this.$tabsSource.next(data);
         });
+    }
+
+    public getTabs() {
+        this.http.get('/api/pos/tabs').subscribe(
+            async (tabs: Tab[]): Promise<void> => {
+                console.log(tabs);
+                this.$tabsSource.next(tabs);
+
+                const items = (await this.http.get('/api/pos/menuItems').toPromise()) as Item[];
+
+                this.$menuSource.next(items);
+            },
+        );
     }
 
     private getMenuData(): void {
