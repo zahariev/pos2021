@@ -20,7 +20,10 @@ export class Menu {
 
     searchFilter(str: string): Item[] | undefined {
         return this.data.filter(
-            (item) => item.name.toLowerCase().includes(str) || item.sku.toLowerCase().includes(str),
+            (item) =>
+                item.name.toLowerCase().includes(str) ||
+                item.sku.toLowerCase().includes(str) ||
+                this.getItem(item.parentId)?.name.toLowerCase().includes(str),
         );
     }
 
