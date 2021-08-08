@@ -112,8 +112,17 @@ export class ItemboardComponent implements OnInit {
         if (!item.items.length) return;
 
         this.itemSubList.items = [...item.items];
-        this.dialog.open(SubItemListComponent, {
+        const dialogRef = this.dialog.open(SubItemListComponent, {
             data: this.itemSubList,
+        });
+        const subscribeDialog = dialogRef.componentInstance.clickItemEvent.subscribe(
+            (itm: Item) => {
+                this.markItem(itm);
+                //i can see 'hello' from MatDialog
+            },
+        );
+        dialogRef.afterClosed().subscribe((result) => {
+            subscribeDialog.unsubscribe();
         });
         ev.stopPropagation();
         return false;

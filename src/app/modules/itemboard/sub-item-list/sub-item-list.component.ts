@@ -9,7 +9,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 })
 export class SubItemListComponent implements OnInit {
     group: any;
-    @Output() closeEvent: EventEmitter<any> = new EventEmitter();
+
     @Output() clickItemEvent: EventEmitter<any> = new EventEmitter();
 
     constructor(
@@ -33,7 +33,6 @@ export class SubItemListComponent implements OnInit {
     }
 
     public mouseLeave() {
-        this.closeEvent.emit();
-        // console.log("leave")
+        this.dialogRef.close();
     }
 }
