@@ -38,34 +38,16 @@
 
                     <div *ngFor="let item of filtered">
                         <div
-                            *ngIf="item.name.length > 0"
+                            *ngIf="item.name.length > 0 && item.price"
                             class="resize button Item"
-                            [class.Group]="item.is_group > 0"
+                            [class.Group]="item.items?.length "
+                            attr.data-id="{{ item.id }}"
                             (click)="markItem(item)"
                         >
                             <span class="center3">{{ item.name }}</span>
                         </div>
 
-                        <br *ngIf="item.name.length == 0" clear="left" />
-                    </div>
-                </div>
-                <div *ngFor="let tab of filtered.groups">
-                    <br clear="left" />
-                    <div clear="left" class="groupDevider">
-                        <span class="groupName">{{ tab.name }}</span>
-                    </div>
-
-                    <div *ngFor="let item of tab.items">
-                        <div
-                            *ngIf="item.name.length > 0"
-                            class="resize button Item"
-                            [class.Group]="item.is_group > 0"
-                            (click)="markItem(item)"
-                        >
-                            <span class="center3">{{ item.name }}</span>
-                        </div>
-
-                        <br *ngIf="item.name.length == 0" clear="left" />
+                        <br *ngIf="item.name.length===0" clear="left" />
                     </div>
                 </div>
             </div>
@@ -81,7 +63,7 @@
 
                     <div *ngFor="let item of menu.getItems(tab.id)">
                         <div
-                            *ngIf="item.name.length > 0"
+                            *ngIf="item.name.length > 0&& item.price"
                             class="resize button Item"
                             [class.Group]="item.items?.length "
                             attr.data-id="{{ item.id }}"
