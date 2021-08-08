@@ -95,10 +95,12 @@ input[type='search'] {
 
 #clear-icon-button {
     position: relative;
-    top: 0px;
+    top: 4px;
     zoom: 80%;
-    right: 40px;
     color: mat-color($hover-bg, 600);
+}
+.moved {
+    right: 40px;
 }
 
 input[type='search']:focus {

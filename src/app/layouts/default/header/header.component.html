@@ -29,6 +29,7 @@
                         [disabled]="!searchInput.value.length"
                         mat-button
                         mat-icon-button
+                        [class.moved]="searchInput.value"
                         class="clear-icon-button"
                         aria-label="Clear"
                         (click)="cancelSearch();searchInput.value=''"
