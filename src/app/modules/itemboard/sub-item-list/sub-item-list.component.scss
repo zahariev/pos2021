@@ -40,15 +40,26 @@
 }
 
 #subWindow {
-    position: absolute;
-    top: 30%;
-    left: 10px;
-    background-color: rgba(255, 255, 255, 1);
-    box-shadow: 0 0 15px rgba(81, 77, 92, 0.72);
-    background-clip: padding;
-    border-radius: 15px 15px 15px 15px;
-    width: 650px;
+    // position: absolute;
+    // top: 30%;
+    // left: 10px;
+    position: relative !important;
+    min-width: 250px;
     min-height: 70px;
-    padding: 15px;
+    // padding: 15px;
     z-index: 9999;
+}
+
+.header {
+    position: relative;
+    top: -10px;
+}
+
+.close.mat-button {
+    position: absolute;
+    top: -15px;
+    right: -15px;
+    padding: 5px;
+    line-height: 14px;
+    min-width: auto;
 }

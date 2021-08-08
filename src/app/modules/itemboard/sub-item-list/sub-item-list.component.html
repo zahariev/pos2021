@@ -1,7 +1,10 @@
 <div id="subWindow" (mouseleave)="mouseLeave()" (contextmenu)="false;">
-    <div class="subWindowHeader">
-        <div class="subWindowHeader" clear="left">
+    <button class="close" mat-button (click)="closeDialog()"><mat-icon>close</mat-icon></button>
+
+    <div class="header">
+        <div clear="left">
             <span class="groupName">{{group.name}}</span>
+            <!-- <button mat-button mat-dialog-close tabindex="-1" class="closeBtn">X</button> -->
         </div>
     </div>
 

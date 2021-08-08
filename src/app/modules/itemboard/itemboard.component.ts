@@ -6,7 +6,8 @@ import { OrderService } from '@app/core/services/order.service';
 import { Item } from '@app/shared/models/interfaces/item';
 import { Menu } from '@app/shared/models/menu';
 import { Tab } from '@app/shared/models/interfaces/tab';
-
+import { MatDialog } from '@angular/material/dialog';
+import { SubItemListComponent } from './sub-item-list/sub-item-list.component';
 @Component({
     selector: 'app-itemboard',
     templateUrl: './itemboard.component.html',
@@ -40,7 +41,11 @@ export class ItemboardComponent implements OnInit {
     selectedIdx = 0;
     filtered: any = {};
 
-    constructor(private menuService: MenuService, private order: OrderService) {
+    constructor(
+        private menuService: MenuService,
+        private order: OrderService,
+        public dialog: MatDialog,
+    ) {
         // this.menuService.filter = false;
         this.menuService.menuData.subscribe((data: any) => {
             console.log(data);
@@ -61,7 +66,6 @@ export class ItemboardComponent implements OnInit {
         this.menuService.filtered.subscribe((value: any) => {
             if (value.length) {
                 this.filtered = this.menu.searchFilter(value);
-                console.log(this.filtered);
 
                 this.selectedIdx = 0;
                 this.tabs = [];
@@ -108,6 +112,9 @@ export class ItemboardComponent implements OnInit {
         if (!item.items.length) return;
 
         this.itemSubList.items = [...item.items];
+        this.dialog.open(SubItemListComponent, {
+            data: this.itemSubList,
+        });
         ev.stopPropagation();
         return false;
     }

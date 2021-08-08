@@ -1,5 +1,6 @@
 /* eslint-disable @angular-eslint/component-selector */
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Inject, Input, OnInit, Output } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
     selector: 'subItemList',
@@ -7,12 +8,17 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
     styleUrls: ['./sub-item-list.component.scss'],
 })
 export class SubItemListComponent implements OnInit {
-    @Input() group: any;
-
+    group: any;
     @Output() closeEvent: EventEmitter<any> = new EventEmitter();
     @Output() clickItemEvent: EventEmitter<any> = new EventEmitter();
 
-    constructor() {}
+    constructor(
+        public dialogRef: MatDialogRef<SubItemListComponent>,
+        @Inject(MAT_DIALOG_DATA) public data: any,
+    ) {
+        console.log(data);
+        this.group = data;
+    }
 
     ngOnInit(): void {
         const a = 0;
@@ -20,6 +26,10 @@ export class SubItemListComponent implements OnInit {
 
     clickItem(item: any) {
         this.clickItemEvent.emit(item);
+    }
+
+    closeDialog() {
+        this.dialogRef.close();
     }
 
     public mouseLeave() {
