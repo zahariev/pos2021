@@ -1,10 +1,8 @@
 {
     "/api": {
-        "target": "http://dev.soft2run.com",
+        "target": "http://localhost:3000",
         "secure": false,
-        "pathRewrite": {
-            "^/api": ""
-        },
+
         "changeOrigin": true,
         "logLevel": "debug"
     }
