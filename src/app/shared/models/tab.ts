@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/naming-convention */
-import { Item } from './item';
+import { Item } from './interfaces/item';
 
 export class Tab {
     constructor(
