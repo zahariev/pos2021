@@ -53,15 +53,15 @@
             </div>
         </mat-tab>
 
-        <mat-tab *ngFor="let tabz of tabs" [label]="tabz.name">
+        <mat-tab *ngFor="let tab of tabs" [label]="tab.name">
             <div cdkScrollable class="md-no-animation">
-                <div *ngFor="let tab of menu.getCategories(tabz.id)">
+                <div *ngFor="let group of tab.items">
                     <br clear="left" />
                     <div clear="left" class="groupDevider">
-                        <span class="groupName">{{ tab.name }}</span>
+                        <span class="groupName">{{ group.name }}</span>
                     </div>
 
-                    <div *ngFor="let item of menu.getItems(tab.id)">
+                    <div *ngFor="let item of menu.getMainItems(group.id)">
                         <div
                             *ngIf="item.name.length > 0&& item.price"
                             class="resize button Item"
@@ -82,6 +82,33 @@
 
                         <br *ngIf="item.name.length == 0" clear="left" />
                     </div>
+                </div>
+                <br clear="left" />
+
+                <div clear="left" class="groupDevider">
+                    <span class="groupName"> други </span>
+                </div>
+
+                <div *ngFor="let item of menu.getMainItems(tab.id)">
+                    <div
+                        *ngIf="item.name.length > 0 && item.price"
+                        class="resize button Item"
+                        [class.Group]="item.items?.length "
+                        attr.data-id="{{ item.id }}"
+                        (click)="markItem(item)"
+                    >
+                        <span class="center3">{{ item.name }}</span>
+                        <!-- <div
+                            class="groupIcon"
+                            *ngIf="item.is_group>0"
+                            (click)="filterSubItems($event,item.id);false"
+                            (contextmenu)="onContextMenu($event)"
+                        >
+                            <mat-icon>menu</mat-icon>
+                        </div> -->
+                    </div>
+
+                    <br *ngIf="item.name.length == 0" clear="left" />
                 </div>
             </div>
         </mat-tab>

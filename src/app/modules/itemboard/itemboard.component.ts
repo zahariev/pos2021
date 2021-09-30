@@ -46,10 +46,8 @@ export class ItemboardComponent implements OnInit {
         private order: OrderService,
         public dialog: MatDialog,
     ) {
-        // this.menuService.filter = false;
+        // this.menuService.filter = 'false';
         this.menuService.menuData.subscribe((data: any) => {
-            console.log(data);
-
             if (data.length) {
                 this.menu = new Menu(data);
             }

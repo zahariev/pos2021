@@ -34,13 +34,24 @@ export class MenuService {
         this.http.get('/api/pos/tabs').subscribe(
             async (tabs: Tab[]): Promise<void> => {
                 // console.log(tabs);
-                this.$tabsSource.next(tabs);
+                tabs.forEach((tab) => {
+                    tab.parentId = Number(tab.parentId);
+                    if (tab.parentId === 0) tab.items = [];
+                });
+
+                tabs.forEach((tab) => {
+                    if (tab.parentId > 0) {
+                        const el: Tab = tabs.filter((elem) => elem.id === tab.parentId)[0];
+                        if (el) el.items?.push(tab);
+                    }
+                });
+                this.$tabsSource.next(tabs.filter((tab) => tab.parentId === 0));
             },
         );
     }
 
     public getMenuData(): void {
-        this.http.get('/api/pos/menuItems').subscribe((data: Item[]) => {
+        this.http.get('/api/pos/menu').subscribe((data: Item[]) => {
             this.$menuSource.next(data);
             this.rawMenu = new Menu(data);
         });

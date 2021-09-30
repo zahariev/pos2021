@@ -5,9 +5,7 @@ export class Menu {
     constructor(data: Item[]) {
         if (data.length)
             data.forEach((item) => {
-                if (item.parentId)
-                    item.items = data.filter((itm: any) => itm.parentId === item.id) || [];
-                else item.items = [];
+                item.items = data.filter((itm: any) => itm.parentId === item.id) || [];
             });
         console.log(data);
 
@@ -18,6 +16,10 @@ export class Menu {
         return this.data.find((item) => item.id === Number(id));
     }
 
+    getMainItems(tabId: number) {
+        return this.data.filter((item: any) => item.tabId === tabId && item.parentId === 0);
+    }
+
     searchFilter(str: string): Item[] | undefined {
         return this.data.filter(
             (item) =>
@@ -25,10 +27,6 @@ export class Menu {
                 item.sku.toLowerCase().includes(str) ||
                 this.getItem(item.parentId)?.name.toLowerCase().includes(str),
         );
-    }
-
-    getCategories(parentId: number) {
-        return this.data.filter((item: any) => !item.parentId && item.categoryId === parentId);
     }
 
     getItems(parentId: number) {
