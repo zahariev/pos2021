@@ -55,7 +55,7 @@
         </mat-tab>
 
         <mat-tab *ngFor="let tab of tabs" [label]="tab.name">
-            <div cdkScrollable class="md-no-animation" cdkDropListGroup>
+            <div cdkScrollable class="full-height md-no-animation" cdkDropListGroup>
                 <div *ngFor="let group of tab.items">
                     <br clear="left" />
                     <div
@@ -82,14 +82,6 @@
                                 cdkDrag
                             >
                                 <span class="center3">{{ item.name }}</span>
-                                <!-- <div
-                                class="groupIcon"
-                                *ngIf="item.is_group>0"
-                                (click)="filterSubItems($event,item.id);false"
-                                (contextmenu)="onContextMenu($event)"
-                            >
-                                <mat-icon>menu</mat-icon>
-                            </div> -->
                             </div>
 
                             <br *ngIf="item.name.length == 0" clear="left" />

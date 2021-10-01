@@ -83,7 +83,8 @@ export class ItemboardComponent implements OnInit {
 
     drop(event: any) {
         // console.log(event.container);
-        console.log('sort', event.container.data, event.previousContainer.data);
+        // console.log(event.container);
+        console.log('sort', event.previousIndex, event.currentIndex);
 
         if (event.previousContainer.data === event.container.data) {
             // console.log(this.menu.groups);
@@ -97,8 +98,8 @@ export class ItemboardComponent implements OnInit {
             console.log('move');
 
             transferArrayItem(
-                event.previousContainer.data,
-                event.container.data,
+                this.menu.groups[event.previousContainer.data],
+                this.menu.groups[event.container.data],
                 event.previousIndex,
                 event.currentIndex,
             );
