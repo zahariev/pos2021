@@ -2,7 +2,7 @@
 export interface Item {
     id: number;
     parentId: number;
-    categoryId: number;
+    tabId: number;
     recipeId: number;
     name: string;
     price: number;
