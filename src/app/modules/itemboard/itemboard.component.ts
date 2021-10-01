@@ -40,6 +40,7 @@ export class ItemboardComponent implements OnInit {
     state = 'default';
     selectedIdx = 0;
     filtered: any = {};
+    filter = '';
 
     constructor(
         private menuService: MenuService,
@@ -63,11 +64,14 @@ export class ItemboardComponent implements OnInit {
 
         this.menuService.filtered.subscribe((value: any) => {
             if (value.length) {
+                console.log(value);
+                this.filter = value;
                 this.filtered = this.menu.searchFilter(value);
 
                 this.selectedIdx = 0;
                 this.tabs = [];
             } else {
+                this.filter = '';
                 this.filtered = [];
                 // this.tabs = this.tabData;
             }
