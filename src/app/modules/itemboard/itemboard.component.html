@@ -55,23 +55,34 @@
         </mat-tab>
 
         <mat-tab *ngFor="let tab of tabs" [label]="tab.name">
-            <div cdkScrollable class="md-no-animation">
+            <div cdkScrollable class="md-no-animation" cdkDropListGroup>
                 <div *ngFor="let group of tab.items">
                     <br clear="left" />
-                    <div clear="left" class="groupDevider">
+                    <div
+                        clear="left"
+                        class="groupDevider"
+                        [ngClass]="color"
+                        (dragover)="color = 'green'"
+                    >
                         <span class="groupName">{{ group.name }}</span>
                     </div>
-
-                    <div *ngFor="let item of menu.getMainItems(group.id)">
-                        <div
-                            *ngIf="item.name.length > 0&& item.price"
-                            class="resize button Item"
-                            [class.Group]="item.items?.length "
-                            attr.data-id="{{ item.id }}"
-                            (click)="markItem(item)"
-                        >
-                            <span class="center3">{{ item.name }}</span>
-                            <!-- <div
+                    <div
+                        class="dropLists"
+                        cdkDropList
+                        [cdkDropListData]="group.id"
+                        (cdkDropListDropped)="drop($event)"
+                    >
+                        <ng-container *ngFor="let item of menu.groups[group.id]">
+                            <div
+                                *ngIf="item.name.length > 0&& item.price"
+                                class="resize button Item"
+                                [class.Group]="item.items?.length "
+                                attr.data-id="{{ item.id }}"
+                                (click)="markItem(item)"
+                                cdkDrag
+                            >
+                                <span class="center3">{{ item.name }}</span>
+                                <!-- <div
                                 class="groupIcon"
                                 *ngIf="item.is_group>0"
                                 (click)="filterSubItems($event,item.id);false"
@@ -79,9 +90,10 @@
                             >
                                 <mat-icon>menu</mat-icon>
                             </div> -->
-                        </div>
+                            </div>
 
-                        <br *ngIf="item.name.length == 0" clear="left" />
+                            <br *ngIf="item.name.length == 0" clear="left" />
+                        </ng-container>
                     </div>
                 </div>
                 <br clear="left" />
@@ -90,26 +102,34 @@
                     <span class="groupName"> други </span>
                 </div>
 
-                <div *ngFor="let item of menu.getMainItems(tab.id)">
-                    <div
-                        *ngIf="item.name.length > 0 && item.price"
-                        class="resize button Item"
-                        [class.Group]="item.items?.length "
-                        attr.data-id="{{ item.id }}"
-                        (click)="markItem(item)"
-                    >
-                        <span class="center3">{{ item.name }}</span>
-                        <!-- <div
-                            class="groupIcon"
-                            *ngIf="item.is_group>0"
-                            (click)="filterSubItems($event,item.id);false"
-                            (contextmenu)="onContextMenu($event)"
+                <div
+                    class="dropLists"
+                    cdkDropList
+                    [cdkDropListData]="tab.id"
+                    (cdkDropListDropped)="drop($event)"
+                >
+                    <ng-container *ngFor="let item of menu.getMainItems(tab.id)">
+                        <div
+                            *ngIf="item.name.length > 0 && item.price"
+                            class="resize button Item"
+                            [class.Group]="item.items?.length "
+                            attr.data-id="{{ item.id }}"
+                            (click)="markItem(item)"
+                            cdkDrag
                         >
-                            <mat-icon>menu</mat-icon>
-                        </div> -->
-                    </div>
+                            <span class="center3">{{ item.name }}</span>
+                            <!-- <div
+                        class="groupIcon"
+                        *ngIf="item.is_group>0"
+                        (click)="filterSubItems($event,item.id);false"
+                        (contextmenu)="onContextMenu($event)"
+                    >
+                        <mat-icon>menu</mat-icon>
+                    </div> -->
+                        </div>
 
-                    <br *ngIf="item.name.length == 0" clear="left" />
+                        <br *ngIf="item.name.length == 0" clear="left" />
+                    </ng-container>
                 </div>
             </div>
         </mat-tab>

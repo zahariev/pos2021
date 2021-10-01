@@ -8,6 +8,7 @@ import { Menu } from '@app/shared/models/menu';
 import { Tab } from '@app/shared/models/interfaces/tab';
 import { MatDialog } from '@angular/material/dialog';
 import { SubItemListComponent } from './sub-item-list/sub-item-list.component';
+import { moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 @Component({
     selector: 'app-itemboard',
     templateUrl: './itemboard.component.html',
@@ -41,6 +42,7 @@ export class ItemboardComponent implements OnInit {
     selectedIdx = 0;
     filtered: any = {};
     filter = '';
+    color!: string;
 
     constructor(
         private menuService: MenuService,
@@ -63,19 +65,58 @@ export class ItemboardComponent implements OnInit {
         });
 
         this.menuService.filtered.subscribe((value: any) => {
-            if (value.length) {
-                console.log(value);
+            if (value.length > 2 && !this.checkCommand(value)) {
                 this.filter = value;
                 this.filtered = this.menu.searchFilter(value);
 
                 this.selectedIdx = 0;
                 this.tabs = [];
             } else {
+                console.log('no filter');
+
                 this.filter = '';
                 this.filtered = [];
                 // this.tabs = this.tabData;
             }
         });
+    }
+
+    drop(event: any) {
+        // console.log(event.container);
+        console.log('sort', event.container.data, event.previousContainer.data);
+
+        if (event.previousContainer.data === event.container.data) {
+            // console.log(this.menu.groups);
+
+            moveItemInArray(
+                this.menu.groups[event.container.data],
+                event.previousIndex,
+                event.currentIndex,
+            );
+        } else {
+            console.log('move');
+
+            transferArrayItem(
+                event.previousContainer.data,
+                event.container.data,
+                event.previousIndex,
+                event.currentIndex,
+            );
+        }
+    }
+
+    checkCommand(value: string): boolean {
+        switch (value.substr(0, 3)) {
+            case '///':
+                console.log('sys');
+
+                break;
+            case '???':
+                break;
+            default:
+                return false;
+        }
+        return true;
     }
 
     ngOnInit(): void {

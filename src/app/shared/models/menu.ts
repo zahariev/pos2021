@@ -2,12 +2,15 @@ import { Item } from './interfaces/item';
 
 export class Menu {
     private data: Item[];
+    public groups: { [key: string]: Item[] } = {};
+
     constructor(data: Item[]) {
         if (data.length)
             data.forEach((item) => {
+                if (!this.groups[item.tabId]) this.groups[item.tabId] = [];
+                this.groups[item.tabId].push(item);
                 item.items = data.filter((itm: any) => itm.parentId === item.id) || [];
             });
-        console.log(data);
 
         this.data = data;
     }
