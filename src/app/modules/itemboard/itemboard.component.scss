@@ -107,8 +107,8 @@ span .Item {
 }
 
 .dropLists {
-    width: 99%;
-    border: 1px solid red;
+    // width: 99%;
+    min-height: 20px;
 
     display: flex;
     flex-wrap: wrap;

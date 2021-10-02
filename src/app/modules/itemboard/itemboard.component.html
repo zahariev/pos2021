@@ -81,6 +81,7 @@
                                 attr.data-id="{{ item.id }}"
                                 (click)="markItem(item)"
                                 cdkDrag
+                                [cdkDragDisabled]="true"
                             >
                                 <span class="center3">{{ item.name }}</span>
                             </div>
@@ -110,6 +111,7 @@
                             attr.data-id="{{ item.id }}"
                             (click)="markItem(item)"
                             cdkDrag
+                            [cdkDragDisabled]="true"
                         >
                             <span class="center3">{{ item.name }}</span>
                             <!-- <div
