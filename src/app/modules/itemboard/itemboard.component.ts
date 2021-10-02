@@ -89,17 +89,13 @@ export class ItemboardComponent implements OnInit {
         if (event.previousContainer.data === event.container.data) {
             // console.log(this.menu.groups);
 
-            moveItemInArray(
-                this.menu.groups[event.container.data],
-                event.previousIndex,
-                event.currentIndex,
-            );
+            moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
         } else {
             console.log('move');
 
             transferArrayItem(
-                this.menu.groups[event.previousContainer.data],
-                this.menu.groups[event.container.data],
+                event.previousContainer.data,
+                event.container.data,
                 event.previousIndex,
                 event.currentIndex,
             );

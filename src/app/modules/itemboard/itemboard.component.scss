@@ -109,9 +109,9 @@ span .Item {
 .dropLists {
     width: 99%;
     border: 1px solid red;
-    // position: absolute;
-    // float: left;
+
     display: flex;
+    flex-wrap: wrap;
 }
 
 .cdk-drag-placeholder {
