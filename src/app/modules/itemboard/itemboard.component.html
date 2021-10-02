@@ -69,6 +69,7 @@
                     <div
                         class="dropLists"
                         cdkDropList
+                        cdkDropListOrientation="horizontal"
                         [cdkDropListData]="menu.groups[group.id]"
                         (cdkDropListDropped)="drop($event)"
                     >
@@ -97,7 +98,8 @@
                 <div
                     class="dropLists"
                     cdkDropList
-                    [cdkDropListData]="tab.id"
+                    cdkDropListOrientation="horizontal"
+                    [cdkDropListData]="menu.rest[tab.id]"
                     (cdkDropListDropped)="drop($event)"
                 >
                     <ng-container *ngFor="let item of menu.rest[tab.id]">
