@@ -61,7 +61,7 @@ export class HeaderComponent implements OnInit {
 
         this.value = target.value;
 
-        if (this.value.length) {
+        if (this.value.length > 2) {
             this.menuService.filterMenu(this.value);
         } else this.cancelSearch();
     }
