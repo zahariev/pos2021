@@ -43,6 +43,7 @@ export class ItemboardComponent implements OnInit {
     filtered: any = {};
     filter = '';
     color!: string;
+    editMode = true;
 
     constructor(
         private menuService: MenuService,
@@ -95,7 +96,28 @@ export class ItemboardComponent implements OnInit {
 
             transferArrayItem(
                 event.previousContainer.data,
-                event.container.data,
+                event.container.data || [],
+                event.previousIndex,
+                event.currentIndex,
+            );
+        }
+    }
+
+    dropCategory(event: any) {
+        // console.log(event.container);
+        // console.log(event.container);
+        console.log('sort', event.container.data);
+
+        if (event.previousContainer.data === event.container.data) {
+            // console.log(this.menu.groups);
+
+            moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+        } else {
+            console.log('move');
+
+            transferArrayItem(
+                event.previousContainer.data,
+                event.container.data || [],
                 event.previousIndex,
                 event.currentIndex,
             );
@@ -170,5 +192,39 @@ export class ItemboardComponent implements OnInit {
 
     closeItemList() {
         this.itemSubList = [];
+    }
+
+    onTyping(ev: Event) {
+        const input = ev.target as HTMLElement;
+        console.log(input.innerHTML);
+    }
+
+    addCategory(tabId: number) {
+        this.menuService.addTab(tabId);
+    }
+
+    editCategoryName(event: any, tab: Tab) {
+        console.log(event);
+        console.log(tab);
+
+        if (event.key === 'Enter' || event.type === 'blur') {
+            const target = event.target as HTMLElement;
+            const value = target.innerHTML;
+
+            if (value.length) {
+                tab.name = value.trim();
+                console.log(tab);
+
+                this.menuService.editTab(tab);
+            } else {
+                this.menuService.deleteTab(tab.id);
+            }
+            target.blur();
+            if (event.key === 'Enter') {
+                event.preventDefault();
+                event.stopPropagation();
+            }
+        } else {
+        }
     }
 }

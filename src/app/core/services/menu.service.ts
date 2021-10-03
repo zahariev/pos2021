@@ -50,6 +50,27 @@ export class MenuService {
         );
     }
 
+    public addTab(parentId: number = 0) {
+        this.http.postApiCall('/pos/tab', { parentId }).subscribe((res) => {
+            this.getTabs();
+            // console.log(tabs);
+        });
+    }
+
+    public deleteTab(id: number = 0) {
+        this.http.deleteApiCall(`/pos/tab/${id}`).subscribe((res) => {
+            this.getTabs();
+            // console.log(tabs);
+        });
+    }
+
+    public editTab(tab: Tab) {
+        this.http.putApiCall(`/pos/tab/${tab.id}`, { tab }).subscribe((res) => {
+            this.getTabs();
+            // console.log(tabs);
+        });
+    }
+
     public getMenuData(): void {
         this.http.get('/api/pos/menu').subscribe((data: Item[]) => {
             this.$menuSource.next(data);

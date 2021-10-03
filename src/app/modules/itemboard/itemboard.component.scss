@@ -77,6 +77,9 @@ span .Item {
     width: 120px;
 }
 
+.groupDevider {
+    width: 50%;
+}
 .groupName {
     font-size: 16px;
 }
@@ -136,4 +139,21 @@ span .Item {
 
 .full-height {
     height: 100%;
+}
+
+#addCategory {
+}
+
+[contenteditable] {
+    padding: 16px;
+    width: 200px;
+
+    white-space: pre;
+    outline: 0;
+}
+
+.dragHandle {
+    top: 5px;
+    position: relative;
+    transform: scale(0.8);
 }

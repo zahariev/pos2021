@@ -55,66 +55,81 @@
         </mat-tab>
 
         <mat-tab *ngFor="let tab of tabs" [label]="tab.name">
-            <div cdkScrollable class="full-height md-no-animation" cdkDropListGroup>
-                <div *ngFor="let group of tab.items">
+            <div
+                cdkScrollable
+                class="full-height md-no-animation"
+                cdkDropList
+                cdkDropListOrientation="vertical"
+                [cdkDropListData]="tab.items"
+                (cdkDropListDropped)="dropCategory($event)"
+            >
+                <div cdkDropListGroup>
+                    <ng-container *ngFor="let group of tab.items">
+                        <div cdkDrag [cdkDragDisabled]="!editMode">
+                            <br clear="left" />
+                            <div clear="left" class="groupDevider">
+                                <mat-icon *ngIf="editMode" class="dragHandle" cdkDragHandle
+                                    >open_with</mat-icon
+                                >
+
+                                <span
+                                    contenteditable
+                                    class="groupName"
+                                    (keydown)="editCategoryName($event,group)"
+                                    >{{group.name}}</span
+                                >
+                            </div>
+                            <div
+                                class="dropLists"
+                                cdkDropList
+                                cdkDropListOrientation="horizontal"
+                                [cdkDropListData]="menu.groups[group.id]"
+                                (cdkDropListDropped)="drop($event)"
+                            >
+                                <ng-container *ngFor="let item of menu.groups[group.id]">
+                                    <div
+                                        *ngIf="item.name.length > 0&& item.price"
+                                        class="resize button Item"
+                                        [class.Group]="item.items?.length "
+                                        attr.data-id="{{ item.id }}"
+                                        (click)="markItem(item)"
+                                        cdkDrag
+                                        [cdkDragDisabled]="!editMode"
+                                    >
+                                        <span class="center3">{{ item.name }}</span>
+                                    </div>
+
+                                    <br *ngIf="item.name.length == 0" clear="left" />
+                                </ng-container>
+                            </div>
+                        </div>
+                    </ng-container>
+
                     <br clear="left" />
-                    <div
-                        clear="left"
-                        class="groupDevider"
-                        [ngClass]="color"
-                        (dragover)="color = 'green'"
-                    >
-                        <span class="groupName">{{ group.name }}</span>
+
+                    <div clear="left" class="groupDevider">
+                        <span class="groupName"> други </span>
                     </div>
+
                     <div
                         class="dropLists"
                         cdkDropList
                         cdkDropListOrientation="horizontal"
-                        [cdkDropListData]="menu.groups[group.id]"
+                        [cdkDropListData]="menu.rest[tab.id]"
                         (cdkDropListDropped)="drop($event)"
                     >
-                        <ng-container *ngFor="let item of menu.groups[group.id]">
+                        <ng-container *ngFor="let item of menu.rest[tab.id]">
                             <div
-                                *ngIf="item.name.length > 0&& item.price"
+                                *ngIf="item.name.length > 0 && item.price"
                                 class="resize button Item"
                                 [class.Group]="item.items?.length "
                                 attr.data-id="{{ item.id }}"
                                 (click)="markItem(item)"
                                 cdkDrag
-                                [cdkDragDisabled]="true"
+                                [cdkDragDisabled]="!editMode"
                             >
                                 <span class="center3">{{ item.name }}</span>
-                            </div>
-
-                            <br *ngIf="item.name.length == 0" clear="left" />
-                        </ng-container>
-                    </div>
-                </div>
-                <br clear="left" />
-
-                <div clear="left" class="groupDevider">
-                    <span class="groupName"> други </span>
-                </div>
-
-                <div
-                    class="dropLists"
-                    cdkDropList
-                    cdkDropListOrientation="horizontal"
-                    [cdkDropListData]="menu.rest[tab.id]"
-                    (cdkDropListDropped)="drop($event)"
-                >
-                    <ng-container *ngFor="let item of menu.rest[tab.id]">
-                        <div
-                            *ngIf="item.name.length > 0 && item.price"
-                            class="resize button Item"
-                            [class.Group]="item.items?.length "
-                            attr.data-id="{{ item.id }}"
-                            (click)="markItem(item)"
-                            cdkDrag
-                            [cdkDragDisabled]="true"
-                        >
-                            <span class="center3">{{ item.name }}</span>
-                            <!-- <div
+                                <!-- <div
                         class="groupIcon"
                         *ngIf="item.is_group>0"
                         (click)="filterSubItems($event,item.id);false"
@@ -122,10 +137,14 @@
                     >
                         <mat-icon>menu</mat-icon>
                     </div> -->
-                        </div>
+                            </div>
 
-                        <br *ngIf="item.name.length == 0" clear="left" />
-                    </ng-container>
+                            <br *ngIf="item.name.length == 0" clear="left" />
+                        </ng-container>
+                    </div>
+                    <button mat-icon-button (click)="addCategory(tab.id)">
+                        <mat-icon>add_circle</mat-icon>
+                    </button>
                 </div>
             </div>
         </mat-tab>
