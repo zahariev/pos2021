@@ -76,6 +76,7 @@
                                     contenteditable
                                     class="groupName"
                                     (keydown)="editCategoryName($event,group)"
+                                    (blur)="editCategoryName($event,group)"
                                     >{{group.name}}</span
                                 >
                             </div>
@@ -84,7 +85,7 @@
                                 cdkDropList
                                 cdkDropListOrientation="horizontal"
                                 [cdkDropListData]="menu.groups[group.id]"
-                                (cdkDropListDropped)="drop($event)"
+                                (cdkDropListDropped)="dropItem($event,group.id)"
                             >
                                 <ng-container *ngFor="let item of menu.groups[group.id]">
                                     <div
@@ -116,7 +117,7 @@
                         cdkDropList
                         cdkDropListOrientation="horizontal"
                         [cdkDropListData]="menu.rest[tab.id]"
-                        (cdkDropListDropped)="drop($event)"
+                        (cdkDropListDropped)="dropItem($event,tab.id)"
                     >
                         <ng-container *ngFor="let item of menu.rest[tab.id]">
                             <div

@@ -16,7 +16,9 @@ export class Menu {
                 item.items = data.filter((itm: any) => itm.parentId === item.id) || [];
 
                 if (item.parentId === 0) this.groups[item.tabId].push(item);
+                this.groups[item.tabId].sort((a: any, b: any) => a.idx - b.idx);
             });
+        console.log(this.groups);
 
         this.data = data;
     }

@@ -82,25 +82,30 @@ export class ItemboardComponent implements OnInit {
         });
     }
 
-    drop(event: any) {
-        // console.log(event.container);
-        // console.log(event.container);
-        console.log('sort', event.previousIndex, event.currentIndex);
-
+    dropItem(event: any, groupId: number) {
         if (event.previousContainer.data === event.container.data) {
             // console.log(this.menu.groups);
 
             moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
         } else {
-            console.log('move');
+            console.log(event.container);
+            if (!event.container.data) {
+                this.menu.groups[groupId] = [];
+                event.container.data = [];
+            }
 
             transferArrayItem(
                 event.previousContainer.data,
-                event.container.data || [],
+                event.container.data,
                 event.previousIndex,
                 event.currentIndex,
             );
+            console.log(event.container.data[event.currentIndex]);
+
+            this.menuService.updateItemParent(event.container.data[event.currentIndex]);
         }
+
+        this.menuService.itemTabOrderChange(event.container.data.map((el: any) => el.id));
     }
 
     dropCategory(event: any) {
@@ -112,6 +117,7 @@ export class ItemboardComponent implements OnInit {
             // console.log(this.menu.groups);
 
             moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+            this.menuService.tabOrderChange(event.container.data.map((el: any) => el.id));
         } else {
             console.log('move');
 

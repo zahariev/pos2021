@@ -73,8 +73,29 @@ export class MenuService {
 
     public getMenuData(): void {
         this.http.get('/api/pos/menu').subscribe((data: Item[]) => {
+            console.log(data);
+
             this.$menuSource.next(data);
             this.rawMenu = new Menu(data);
+        });
+    }
+
+    public itemTabOrderChange(arrIds: number[]) {
+        this.http.postApiCall(`/pos/itemTabIdxChange`, arrIds).subscribe((res) => {
+            this.getTabs();
+        });
+    }
+
+    public updateItemParent(tab: Tab) {
+        this.http.putApiCall(`/pos/itemParentChange/${tab.id}`, { tab }).subscribe((res) => {
+            this.getTabs();
+            // console.log(tabs);
+        });
+    }
+
+    public tabOrderChange(arrIds: number[]) {
+        this.http.postApiCall(`/pos/tabIdxChange`, arrIds).subscribe((res) => {
+            this.getTabs();
         });
     }
 
