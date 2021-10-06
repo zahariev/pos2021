@@ -52,7 +52,6 @@ export class FooterComponent implements OnInit {
     }
 
     billBtnClick(openTab: any) {
-        console.log(openTab);
         this.state = 'open';
         this.orderService.setOpenTab(openTab);
     }

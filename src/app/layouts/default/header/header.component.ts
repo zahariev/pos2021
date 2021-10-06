@@ -69,7 +69,7 @@ export class HeaderComponent implements OnInit {
     cancelSearch() {
         this.menuService.filterMenu('');
         this.menuService.getTabs();
-        this.menuService.getMenuData();
+        // this.menuService.getMenuData();
     }
     signOut() {}
 }

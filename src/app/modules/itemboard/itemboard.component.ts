@@ -33,7 +33,7 @@ import { moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
     ],
 })
 export class ItemboardComponent implements OnInit {
-    menu: Menu = new Menu([]);
+    menu!: Menu;
     tabs: any = [];
     tabData: any = [];
     tabsContent: any = [];
@@ -52,8 +52,8 @@ export class ItemboardComponent implements OnInit {
     ) {
         // this.menuService.filter = 'false';
         this.menuService.menuData.subscribe((data: any) => {
-            if (data.length) {
-                this.menu = new Menu(data);
+            if (data) {
+                this.menu = data;
             }
         });
 
@@ -73,7 +73,7 @@ export class ItemboardComponent implements OnInit {
                 this.selectedIdx = 0;
                 this.tabs = [];
             } else {
-                console.log('no filter');
+                // console.log('no filter');
 
                 this.filter = '';
                 this.filtered = [];
@@ -84,11 +84,8 @@ export class ItemboardComponent implements OnInit {
 
     dropItem(event: any, groupId: number) {
         if (event.previousContainer.data === event.container.data) {
-            // console.log(this.menu.groups);
-
             moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
         } else {
-            console.log(event.container);
             if (!event.container.data) {
                 this.menu.groups[groupId] = [];
                 event.container.data = [];
@@ -100,8 +97,8 @@ export class ItemboardComponent implements OnInit {
                 event.previousIndex,
                 event.currentIndex,
             );
-            console.log(event.container.data[event.currentIndex]);
 
+            event.container.data[event.currentIndex].tabId = groupId;
             this.menuService.updateItemParent(event.container.data[event.currentIndex]);
         }
 
@@ -109,13 +106,7 @@ export class ItemboardComponent implements OnInit {
     }
 
     dropCategory(event: any) {
-        // console.log(event.container);
-        // console.log(event.container);
-        console.log('sort', event.container.data);
-
         if (event.previousContainer.data === event.container.data) {
-            // console.log(this.menu.groups);
-
             moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
             this.menuService.tabOrderChange(event.container.data.map((el: any) => el.id));
         } else {
@@ -210,9 +201,6 @@ export class ItemboardComponent implements OnInit {
     }
 
     editCategoryName(event: any, tab: Tab) {
-        console.log(event);
-        console.log(tab);
-
         if (event.key === 'Enter' || event.type === 'blur') {
             const target = event.target as HTMLElement;
             const value = target.innerHTML;

@@ -1,24 +1,18 @@
 import { Item } from './interfaces/item';
+import { Tab } from './interfaces/tab';
 
 export class Menu {
     private data: Item[];
     public groups: { [key: string]: Item[] } = {};
     public rest: { [key: string]: Item[] } = {};
 
-    constructor(data: Item[]) {
+    constructor(data: Item[], categories: Tab[]) {
         if (data.length)
-            data.forEach((item) => {
-                if (!this.groups[item.tabId]) this.groups[item.tabId] = [];
-                if (!this.rest[item.tabId])
-                    this.rest[item.tabId] = data.filter(
-                        (itm: any) => itm.tabId === item.tabId && item.parentId === 0,
-                    );
-                item.items = data.filter((itm: any) => itm.parentId === item.id) || [];
-
-                if (item.parentId === 0) this.groups[item.tabId].push(item);
-                this.groups[item.tabId].sort((a: any, b: any) => a.idx - b.idx);
+            categories.forEach((category) => {
+                this.rest[category.id] = data.filter(
+                    (itm: any) => itm.tabId === category.id && itm.parentId === 0,
+                );
             });
-        console.log(this.groups);
 
         this.data = data;
     }
