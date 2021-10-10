@@ -9,24 +9,20 @@ export class Menu {
     constructor(data: Item[], tabs: Tab[]) {
         if (data.length) {
             tabs.forEach((tab) => {
-                console.log(tab.id);
-
                 this.rest[tab.id] = data.filter(
-                    (itm: any) => itm.tabId === tab.id && itm.parentId === 0,
+                    (itm: any) => itm.categoryId === tab.id && itm.parentId === 0,
                 );
             });
 
             data.forEach((item) => {
-                if (!this.groups[item.tabId]) this.groups[item.tabId] = [];
+                if (!this.groups[item.categoryId]) this.groups[item.categoryId] = [];
 
                 item.items = data.filter((itm: any) => itm.parentId === item.id) || [];
 
-                if (item.parentId === 0) this.groups[item.tabId].push(item);
-                this.groups[item.tabId].sort((a: any, b: any) => a.idx - b.idx);
+                if (item.parentId === 0) this.groups[item.categoryId].push(item);
+                this.groups[item.categoryId].sort((a: any, b: any) => a.idx - b.idx);
             });
         }
-        console.log(this.groups);
-        console.log(this.rest);
 
         this.data = data;
     }

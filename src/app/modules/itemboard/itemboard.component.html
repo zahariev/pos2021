@@ -81,6 +81,7 @@
                                 >
                             </div>
                             <div
+                                *ngIf="menu.groups"
                                 class="dropLists"
                                 cdkDropList
                                 cdkDropListOrientation="horizontal"
@@ -113,6 +114,7 @@
                     </div>
 
                     <div
+                        *ngIf="menu.rest"
                         class="dropLists"
                         cdkDropList
                         cdkDropListOrientation="horizontal"

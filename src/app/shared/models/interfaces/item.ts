@@ -3,6 +3,7 @@ export interface Item {
     id: number;
     parentId: number;
     tabId: number;
+    categoryId: number;
     recipeId: number;
     name: string;
     price: number;
