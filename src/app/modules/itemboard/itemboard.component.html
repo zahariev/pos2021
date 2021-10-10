@@ -114,14 +114,13 @@
                     </div>
 
                     <div
-                        *ngIf="menu.rest"
+                        *ngIf="ifRestItems(tab.id)"
                         class="dropLists"
                         cdkDropList
                         cdkDropListOrientation="horizontal"
                         [cdkDropListData]="menu.rest[tab.id]"
                         (cdkDropListDropped)="dropItem($event,tab.id)"
                     >
-                        {{tab.id}}
                         <ng-container *ngFor="let item of menu.rest[tab.id]">
                             <div
                                 *ngIf="item.name.length > 0 && item.price"

@@ -105,6 +105,11 @@ export class ItemboardComponent implements OnInit {
         this.menuService.itemTabOrderChange(event.container.data.map((el: any) => el.id));
     }
 
+    ifRestItems(tabId: number): boolean {
+        if (this.menu.rest) return Object.keys(this.menu.rest[tabId]).length > 0;
+        else return false;
+    }
+
     dropCategory(event: any) {
         if (event.previousContainer.data === event.container.data) {
             moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
