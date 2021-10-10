@@ -84,10 +84,10 @@
                                 class="dropLists"
                                 cdkDropList
                                 cdkDropListOrientation="horizontal"
-                                [cdkDropListData]="menu.rest[group.id]"
+                                [cdkDropListData]="menu.groups[group.id]"
                                 (cdkDropListDropped)="dropItem($event,group.id)"
                             >
-                                <ng-container *ngFor="let item of menu.rest[group.id]">
+                                <ng-container *ngFor="let item of menu.groups[group.id]">
                                     <div
                                         *ngIf="item.name.length > 0&& item.price"
                                         class="resize button Item"
@@ -119,6 +119,7 @@
                         [cdkDropListData]="menu.rest[tab.id]"
                         (cdkDropListDropped)="dropItem($event,tab.id)"
                     >
+                        {{tab.id}}
                         <ng-container *ngFor="let item of menu.rest[tab.id]">
                             <div
                                 *ngIf="item.name.length > 0 && item.price"

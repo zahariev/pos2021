@@ -6,13 +6,27 @@ export class Menu {
     public groups: { [key: string]: Item[] } = {};
     public rest: { [key: string]: Item[] } = {};
 
-    constructor(data: Item[], categories: Tab[]) {
-        if (data.length)
-            categories.forEach((category) => {
-                this.rest[category.id] = data.filter(
-                    (itm: any) => itm.tabId === category.id && itm.parentId === 0,
+    constructor(data: Item[], tabs: Tab[]) {
+        if (data.length) {
+            tabs.forEach((tab) => {
+                console.log(tab.id);
+
+                this.rest[tab.id] = data.filter(
+                    (itm: any) => itm.tabId === tab.id && itm.parentId === 0,
                 );
             });
+
+            data.forEach((item) => {
+                if (!this.groups[item.tabId]) this.groups[item.tabId] = [];
+
+                item.items = data.filter((itm: any) => itm.parentId === item.id) || [];
+
+                if (item.parentId === 0) this.groups[item.tabId].push(item);
+                this.groups[item.tabId].sort((a: any, b: any) => a.idx - b.idx);
+            });
+        }
+        console.log(this.groups);
+        console.log(this.rest);
 
         this.data = data;
     }

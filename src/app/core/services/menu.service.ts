@@ -46,7 +46,7 @@ export class MenuService {
                 const mainTabs = tabs.filter((tab) => tab.parentId === 0);
                 this.$tabsSource.next(mainTabs);
                 const categories = tabs.filter((tab) => tab.parentId > 0);
-                this.getMenuData(categories);
+                this.getMenuData(mainTabs);
             },
         );
     }
