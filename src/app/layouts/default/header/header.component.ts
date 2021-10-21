@@ -58,7 +58,6 @@ export class HeaderComponent implements OnInit {
 
     search(event: KeyboardEvent) {
         const target = event.target as HTMLTextAreaElement;
-        console.log(event.key);
 
         this.value = target.value;
         if (this.value[0] === '*') {
@@ -68,7 +67,8 @@ export class HeaderComponent implements OnInit {
                 case '*edit':
                     this.userService.editMode = !this.userService.editMode;
                     break;
-                case '*???':
+                case '*area':
+                    // coose table area to show list
                     break;
 
                 case '*Yat4f':
