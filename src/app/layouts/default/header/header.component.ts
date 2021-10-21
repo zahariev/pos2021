@@ -65,7 +65,8 @@ export class HeaderComponent implements OnInit {
 
             switch (this.value) {
                 case '*edit':
-                    this.userService.editMode = !this.userService.editMode;
+                    if (event.key === 'Enter')
+                        this.userService.editMode = !this.userService.editMode;
                     break;
                 case '*area':
                     // coose table area to show list
