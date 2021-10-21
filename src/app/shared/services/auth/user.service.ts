@@ -19,6 +19,8 @@ export class UserService {
     public activeUser = this.user$.asObservable();
     public users$ = new BehaviorSubject<User[] | null>([]);
     public listUsers = this.users$.asObservable();
+
+    editMode = false;
     user!: User;
     initData = false;
 

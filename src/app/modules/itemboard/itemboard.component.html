@@ -65,10 +65,13 @@
             >
                 <div cdkDropListGroup>
                     <ng-container *ngFor="let group of tab.items">
-                        <div cdkDrag [cdkDragDisabled]="!editMode">
+                        <div cdkDrag [cdkDragDisabled]="!userService.editMode">
                             <br clear="left" />
                             <div clear="left" class="groupDevider">
-                                <mat-icon *ngIf="editMode" class="dragHandle" cdkDragHandle
+                                <mat-icon
+                                    *ngIf="userService.editMode"
+                                    class="dragHandle"
+                                    cdkDragHandle
                                     >open_with</mat-icon
                                 >
 
@@ -96,7 +99,7 @@
                                         attr.data-id="{{ item.id }}"
                                         (click)="markItem(item)"
                                         cdkDrag
-                                        [cdkDragDisabled]="!editMode"
+                                        [cdkDragDisabled]="!userService.editMode"
                                     >
                                         <span class="center3">{{ item.name }}</span>
                                     </div>
@@ -129,7 +132,7 @@
                                 attr.data-id="{{ item.id }}"
                                 (click)="markItem(item)"
                                 cdkDrag
-                                [cdkDragDisabled]="!editMode"
+                                [cdkDragDisabled]="!userService.editMode"
                             >
                                 <span class="center3">{{ item.name }}</span>
                                 <!-- <div

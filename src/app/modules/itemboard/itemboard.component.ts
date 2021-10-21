@@ -9,6 +9,7 @@ import { Tab } from '@app/shared/models/interfaces/tab';
 import { MatDialog } from '@angular/material/dialog';
 import { SubItemListComponent } from './sub-item-list/sub-item-list.component';
 import { moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
+import { UserService } from '@app/shared/services/auth/user.service';
 @Component({
     selector: 'app-itemboard',
     templateUrl: './itemboard.component.html',
@@ -43,13 +44,15 @@ export class ItemboardComponent implements OnInit {
     filtered: any = {};
     filter = '';
     color!: string;
-    editMode = true;
+    editMode!: boolean;
 
     constructor(
         private menuService: MenuService,
+        public userService: UserService,
         private order: OrderService,
         public dialog: MatDialog,
     ) {
+        // this.editMode = this.userService.editMode;
         // this.menuService.filter = 'false';
         this.menuService.menuData.subscribe((data: any) => {
             if (data) {

@@ -56,12 +56,27 @@ export class HeaderComponent implements OnInit {
         }, 300);
     }
 
-    search(event: Event) {
+    search(event: KeyboardEvent) {
         const target = event.target as HTMLTextAreaElement;
+        console.log(event.key);
 
         this.value = target.value;
+        if (this.value[0] === '*') {
+            this.cancelSearch();
 
-        if (this.value.length > 2) {
+            switch (this.value) {
+                case '*edit':
+                    this.userService.editMode = !this.userService.editMode;
+                    break;
+                case '*???':
+                    break;
+
+                case '*Yat4f':
+                    break;
+
+                default:
+            }
+        } else if (this.value.length > 2) {
             this.menuService.filterMenu(this.value);
         } else this.cancelSearch();
     }
