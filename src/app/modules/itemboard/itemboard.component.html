@@ -148,7 +148,12 @@
                             <br *ngIf="item.name.length == 0" clear="left" />
                         </ng-container>
                     </div>
-                    <button mat-icon-button (click)="addCategory(tab.id)" class="addBtn">
+                    <button
+                        mat-icon-button
+                        (click)="addCategory(tab.id)"
+                        class="addBtn"
+                        *ngIf="userService.editMode"
+                    >
                         <mat-icon>add_circle</mat-icon> Add category
                     </button>
                 </div>
