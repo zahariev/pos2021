@@ -156,6 +156,7 @@ export class ItemboardComponent implements OnInit {
     }
 
     onContextMenu(event: Event) {
+        // show subList items
         let target: any = event.target;
         if (!target?.dataset?.id) target = target.parentElement;
 
@@ -208,18 +209,23 @@ export class ItemboardComponent implements OnInit {
         this.menuService.addTab(tabId);
     }
 
-    editCategoryName(event: any, tab: Tab) {
-        if (event.key === 'Enter' || event.type === 'blur') {
-            const target = event.target as HTMLElement;
-            const value = target.innerHTML;
+    deleteCategory(items: Item[], categoryId: number) {
+        if (items.length === 0) {
+            this.menuService.deleteTab(categoryId);
+        } else {
+            // TODO: display message "Category not Empty!"
+        }
+    }
 
+    editCategoryName(event: any, tab: Tab) {
+        const target = event.target as HTMLElement;
+        const value = target.innerHTML;
+        if (event.key === 'Enter' || event.type === 'blur') {
             if (value.length) {
                 tab.name = value.trim();
                 console.log(tab);
 
                 this.menuService.editTab(tab);
-            } else {
-                this.menuService.deleteTab(tab.id);
             }
             target.blur();
             if (event.key === 'Enter') {

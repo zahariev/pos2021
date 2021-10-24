@@ -72,16 +72,25 @@
                                     *ngIf="userService.editMode"
                                     class="dragHandle"
                                     cdkDragHandle
-                                    >open_with</mat-icon
                                 >
+                                    open_with
+                                </mat-icon>
 
                                 <span
-                                    contenteditable
+                                    #value
+                                    [attr.contenteditable]="userService.editMode"
                                     class="groupName"
                                     (keydown)="editCategoryName($event,group)"
                                     (blur)="editCategoryName($event,group)"
                                     >{{group.name}}</span
                                 >
+                                <mat-icon
+                                    class="deleteIcon"
+                                    *ngIf="userService.editMode"
+                                    (click)="deleteCategory(menu.groups[group.id],group.id)"
+                                >
+                                    delete
+                                </mat-icon>
                             </div>
                             <div
                                 *ngIf="menu.groups"

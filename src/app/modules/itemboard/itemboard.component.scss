@@ -43,6 +43,10 @@ span .Item {
     text-align: end;
 }
 
+.deletable {
+    background-color: red;
+}
+
 .groupIcon {
     position: absolute;
     bottom: -5px;
@@ -147,8 +151,7 @@ span .Item {
 [contenteditable] {
     padding: 16px;
     width: 200px;
-
-    white-space: pre;
+    // white-space: pre;
     outline: 0;
 }
 
@@ -156,6 +159,13 @@ span .Item {
     top: 5px;
     position: relative;
     transform: scale(0.8);
+}
+
+.deleteIcon {
+    top: 5px;
+    position: relative;
+    transform: scale(0.8);
+    cursor: pointer;
 }
 
 .addBtn {

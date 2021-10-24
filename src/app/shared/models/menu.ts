@@ -8,10 +8,19 @@ export class Menu {
 
     constructor(data: Item[], tabs: Tab[]) {
         if (data.length) {
+            const tempDataSet = [...data];
+            const tabIds = tabs.map((s) => s.id);
+
             tabs.forEach((tab) => {
                 this.rest[tab.id] = data.filter(
                     (itm: any) => itm.categoryId === tab.id && itm.parentId === 0,
                 );
+
+                // console.log(
+                //     data.filter(
+                //         (itm: any) => itm.categoryId === tab.id && !tabIds.includes(itm.categoryId),
+                //     ),
+                // );
             });
 
             data.forEach((item) => {

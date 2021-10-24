@@ -1,12 +1,13 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
 import { UserService } from '@app/shared/services/auth/user.service';
-import { last } from 'rxjs/operators';
+import { Subject } from 'rxjs';
+import { last, takeUntil } from 'rxjs/operators';
 import { MenuService } from './menu.service';
 
 @Injectable({
     providedIn: 'root',
 })
-export class OrderService {
+export class OrderService implements OnDestroy {
     items: any = [];
     user: any;
     qty = 1;
@@ -24,6 +25,8 @@ export class OrderService {
     temp: any = {};
     state: any;
 
+    protected componentDestroyed$ = new Subject<void>();
+
     constructor(public userService: UserService, private menuService: MenuService) {
         let local = localStorage.getItem('sales') as string;
         if (local) {
@@ -37,11 +40,13 @@ export class OrderService {
             this.openTabs = local1;
         } else this.openTabs = [];
 
-        this.menuService.menuData.subscribe((menu: any) => {
-            if (menu.tables) {
-                this.tables = menu.tables;
-            }
-        });
+        this.menuService.menuData
+            .pipe(takeUntil(this.componentDestroyed$))
+            .subscribe((menu: any) => {
+                if (menu.tables) {
+                    this.tables = menu.tables;
+                }
+            });
         this.setState();
 
         this.timer = setTimeout(() => {
@@ -205,5 +210,9 @@ export class OrderService {
         this.openTab = null;
         this.openTab = tab;
         this.table = tab.table;
+    }
+
+    ngOnDestroy() {
+        this.componentDestroyed$.next();
     }
 }
