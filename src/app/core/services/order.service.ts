@@ -143,6 +143,7 @@ export class OrderService implements OnDestroy {
         this.temp = temp;
         this.items = [];
         this.table = {};
+
         // this.openTab = {};
         this.sumTotal = 0;
 

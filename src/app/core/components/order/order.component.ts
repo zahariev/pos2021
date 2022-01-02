@@ -9,5 +9,7 @@ import { Component, OnInit } from '@angular/core';
 export class OrderComponent implements OnInit {
     constructor() {}
 
-    ngOnInit(): void {}
+    ngOnInit(): void {
+        const a = 0;
+    }
 }
