@@ -1,7 +1,7 @@
 import { OrderService } from './../../../core/services/order.service';
 /* eslint-disable @typescript-eslint/no-unused-expressions */
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { version } from '@app/../../package.json';
 enum TabState {
     default = 'default',
@@ -31,9 +31,16 @@ enum TabState {
     ],
 })
 export class FooterComponent implements OnInit {
+    @Input() set rightBarOpen(value: boolean) {
+        console.log(value);
+        this.width100 = !value;
+        this.state = 'default';
+    }
+
     public version: string = version;
     state = 'default';
     openTabs: any[];
+    width100 = false;
 
     constructor(public orderService: OrderService) {
         this.openTabs = orderService.openTabs;
