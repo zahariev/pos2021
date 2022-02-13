@@ -2,7 +2,7 @@
     <br />
 
     <button mat-button [matMenuTriggerFor]="menu" (menuOpened)="menuOpened()">
-        {{order.table.name||order.temp.table?.name||"Tables"}}
+        {{order.table.name||order.temp.table?.name||" - - - "}}
     </button>
     <div *ngIf="order.table.id"></div>
     <mat-menu #menu="matMenu">

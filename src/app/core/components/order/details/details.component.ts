@@ -33,7 +33,7 @@ export class DetailsComponent implements OnInit {
 
     getFreeTables() {
         return [
-            { name: 'Table ', id: '0' },
+            { name: ' - - - ', id: '0' },
             { name: 'Table 1', id: '1' },
             { name: 'Table 2', id: '2' },
             { name: 'Table 3', id: '3' },
