@@ -54,10 +54,7 @@ export class AuthService {
         this.doLogoutUser();
     }
 
-    public async isLoggedIn(): Promise<boolean> {
-        // DEMO login
-        await this.login({});
-
+    public isLoggedIn(): boolean {
         const token = this.jwtToken.getAccessToken() || undefined;
         if (!this.refreshTokenTimeout) this.startRefreshTokenTimer();
 

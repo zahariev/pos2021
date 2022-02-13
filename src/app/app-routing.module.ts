@@ -8,10 +8,10 @@ import { DashboardComponent } from './modules/dashboard/dashboard.component';
 import { ItemboardComponent } from './modules/itemboard/itemboard.component';
 
 const routes: Routes = [
-    // {
-    //     path: 'login',
-    //     loadChildren: () => import('./auth/login.module').then((mod) => mod.LoginModule),
-    // },
+    {
+        path: 'login',
+        loadChildren: () => import('./auth/login.module').then((mod) => mod.LoginModule),
+    },
     {
         path: '',
         component: DefaultComponent,
@@ -43,12 +43,12 @@ const routes: Routes = [
 
             { path: '', redirectTo: 'itemboard', pathMatch: 'full' },
 
-            // { path: '**', redirectTo: 'notfound', pathMatch: 'full' },
+            { path: '**', redirectTo: 'notfound', pathMatch: 'full' },
         ],
     },
 
     { path: '', redirectTo: 'itemboard', pathMatch: 'full' },
-    { path: '404', redirectTo: 'itemboard', pathMatch: 'full' },
+    { path: '404', redirectTo: 'notfound', pathMatch: 'full' },
     { path: '**', redirectTo: '404' },
 ];
 

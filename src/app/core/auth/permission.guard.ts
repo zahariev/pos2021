@@ -34,9 +34,8 @@ export class PermissionGuard implements CanActivate {
             if (this.userService.hasClaim(this.route)) return true;
             else {
                 const newRoute = this.historyService.getLastNonLoginUrl();
-                // if (this.userService.hasClaim(newRoute))
-                this.router.navigateByUrl(newRoute);
-                // else this.router.navigateByUrl('itemboard');
+                if (this.userService.hasClaim(newRoute)) this.router.navigateByUrl(newRoute);
+                else this.router.navigateByUrl('itemboard');
             }
         }
         return false;
@@ -46,9 +45,8 @@ export class PermissionGuard implements CanActivate {
         if (this.authService.isLoggedIn()) {
             return true;
         }
-        // this.authService.redirectUrl = url;
-        // this.router.navigate(['/login']);
-        // return false;
-        return true;
+        this.authService.redirectUrl = url;
+        this.router.navigate(['/login']);
+        return false;
     }
 }
